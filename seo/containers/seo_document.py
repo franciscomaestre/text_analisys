@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import core.nlp as nltk_utils
-from core.cache.file_storage_factory import FileStorageFactory
+import nlp as nltk_utils
+from cache.file_storage_factory import FileStorageFactory
 import nltk.collocations
 from config import settings
-from core.data_mining.web_pages.scrapping_rules import SPLITTER_TAG, SPLITTER
+from data_mining.web_pages.scrapping_rules import SPLITTER_TAG, SPLITTER
 
 
 
@@ -112,7 +112,7 @@ class SeoDocument(object):
             try:
                 return [token for token in tokens if token not in SPLITTER]
             except Exception as ex:
-                print tokens
+                print(tokens)
         else:
             return tokens
         
@@ -248,8 +248,8 @@ class DataDocument(object):
         self.bodyWords = 0
         
 if __name__ == '__main__':
-    from core.data_mining.web_pages.scraper import Scraper
-    from core.data_mining.web_pages.scrapers.readability import Readability
+    from data_mining.web_pages.scraper import Scraper
+    from data_mining.web_pages.scrapers.readability import Readability
     url = u'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html'
     url = u'http://www.publico.es'
     url = u'http://www.animalclan.com/es/15295-royal-canin-gatos-norweian-forest.html?%20search_query=norw&results=1'
@@ -260,11 +260,11 @@ if __name__ == '__main__':
     dataDocument = scraper._getDataDocument()
     seoDocument = SeoDocument(url, order=1, language=language, country=country, dataDocument=dataDocument, cache=False)
     
-    print seoDocument.getTitleTokens(unique=False)
+    print(seoDocument.getTitleTokens(unique=False))
     print(80*'-')
-    print seoDocument._getTextRawTokens()
+    print(seoDocument._getTextRawTokens())
     print(80*'-')
     for sentence in seoDocument.getSentences():
-        print sentence
+        print(sentence)
     print(80*'-')
     

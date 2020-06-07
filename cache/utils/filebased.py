@@ -9,12 +9,12 @@ import tempfile
 import time
 import zlib
 
-from base import DEFAULT_TIMEOUT, BaseCache
-from move import file_move_safe
-from encoding import force_bytes
+from .base import DEFAULT_TIMEOUT, BaseCache
+from .move import file_move_safe
+from .encoding import force_bytes
 
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from .six.moves import cPickle as pickle
 except ImportError:
     import pickle
 

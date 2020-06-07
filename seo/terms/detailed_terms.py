@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage_factory import FileStorageFactory
 from config import settings
 
 from utils.logger import LoggerFactory
-from core.seo.containers.seo_details import SeoDetails
+from seo.containers.seo_details import SeoDetails
 app_logger = LoggerFactory.getInstance('app')
 
 DISPLAY = True

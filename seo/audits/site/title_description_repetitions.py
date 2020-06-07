@@ -48,7 +48,7 @@ def getRepeatedTitlesAndMetaDescriptions(seoLibrary):
 if __name__ == '__main__':
     import tldextract
     import json
-    from core.data_mining.seo_document_downloader import SeoDocumentDownloader
+    from data_mining.seo_document_downloader import SeoDocumentDownloader
     from config import settings
     
     language = u'es'

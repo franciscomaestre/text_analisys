@@ -57,5 +57,5 @@ if __name__ == '__main__':
     extraSettings = RequestSettings(extraSettings)   
     RequestSettingsManager.setSettings(extraSettings)
 
-    from core.nlp.classifier.trainer import cls
+    from nlp.classifier.trainer import cls
     cls.downloadContent(language, country)

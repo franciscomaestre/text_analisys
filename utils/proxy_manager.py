@@ -4,7 +4,7 @@
 import urllib3
 import random
 from config import settings    
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage_factory import FileStorageFactory
 from multiprocessing import RLock
 from utils.logger import LoggerFactory
 
@@ -63,7 +63,7 @@ class ProxyBase(object):
                 alive+=1
         
         app_logger.info(u'PROXIES STATUS ---- UP: %s DOWN: %s ' % (alive, len(self.proxies)-alive))
-        print (u'PROXIES STATUS ---- UP: %s DOWN: %s ' % (alive, len(self.proxies)-alive))
+        print(u'PROXIES STATUS ---- UP: %s DOWN: %s ' % (alive, len(self.proxies)-alive))
         
         #Resucitamos aquellos proxies que llevan mucho tiempo KO
         for proxy in self.proxies:
@@ -136,7 +136,7 @@ class ProxyBuyProxies(ProxyBase):
         return self.proxies
     
     def _getProxies(self):
-        print u'Cargando proxies de BuyProxy'
+        print(u'Cargando proxies de BuyProxy')
         content = ''
         for pid in ProxyBuyProxies.PROXIES_PID_LIST:
             http = urllib3.PoolManager()
@@ -187,7 +187,7 @@ def main():
     proxyManager = ProxyManager
     
     for _i in range(0,100):
-        print proxyManager.getNextProxy()
+        print(proxyManager.getNextProxy())
 
 if __name__ == '__main__':
     import os

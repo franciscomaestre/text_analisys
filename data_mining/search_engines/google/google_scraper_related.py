@@ -1,15 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from core.concurrence.urllib3_pool_factory import Urllib3PoolFactory
-from core.cache.file_storage_factory import FileStorageFactory
+from concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from cache.file_storage_factory import FileStorageFactory
 from utils.logger import LoggerFactory
 import time
 import random
 from config import settings
 from utils.proxy_manager import ProxyManager
 import json
-from core.data_mining.web_pages.scraper import UserAgent
+from data_mining.web_pages.scraper import UserAgent
 
 app_logger = LoggerFactory.getInstance('app')
 
@@ -115,7 +115,7 @@ def main():
     results = google._search(0)
     
     for result in list(set(results)):
-        print result
+        print(result)
 
 if __name__ == '__main__':
     main()

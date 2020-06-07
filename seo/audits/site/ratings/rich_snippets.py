@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import re
-from core.seo.containers.ratings import SiteAuditRating
+from seo.containers.ratings import SiteAuditRating
 from utils.level import Level
 from utils.code import Code
-from core.data_mining.seo_document_downloader import SeoDocumentDownloader
+from data_mining.seo_document_downloader import SeoDocumentDownloader
 from config import settings
 
 class RichSnippetsRating(object):

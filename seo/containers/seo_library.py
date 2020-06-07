@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from nltk.probability import FreqDist
-from core.seo.containers.seo_document import _getMandatoryBlockTokens
+from seo.containers.seo_document import _getMandatoryBlockTokens
 from config import settings
 
 class SeoLibrary(object):

@@ -3,7 +3,7 @@
 
 "File-based cache backend"
 
-from core.cache.django.memcached import MemcachedCache
+from cache.utils.memcached import MemcachedCache
 
 from config import settings
 import sys

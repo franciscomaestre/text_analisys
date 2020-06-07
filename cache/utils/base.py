@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 import time
 import warnings
 
-from encoding import force_bytes
+from .encoding import force_bytes
 
-# from django.core.module_loading import import_string
+# from utils.core.module_loading import import_string
 
 
 class InvalidCacheBackendError(Exception):

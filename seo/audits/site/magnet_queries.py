@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 def getMagnetQueries(seoLibrary, includedTokens):
-    from core.seo.terms.magnet_terms import MagnetTerms
+    from seo.terms.magnet_terms import MagnetTerms
     freqTerms = MagnetTerms(seoLibrary, seoDocumentLimit=len(seoLibrary.seoDocuments), scoreLowerLimit=3, uniqueDomains = False)
     magnetTerms = freqTerms.getTokens()
     

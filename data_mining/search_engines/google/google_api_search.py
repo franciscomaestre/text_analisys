@@ -37,12 +37,12 @@ import json
 import time
 
 from config import settings
-from core.cache.file_storage_factory import FileStorageFactory
-from core.concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from cache.file_storage_factory import FileStorageFactory
+from concurrence.urllib3_pool_factory import Urllib3PoolFactory
 from urllib3.util.retry import Retry
 
 from utils.logger import LoggerFactory
-from core.data_mining.search_engines.google.base_search import BaseSearchEngine
+from data_mining.search_engines.google.base_search import BaseSearchEngine
 app_download_logger = LoggerFactory.getInstance('downloader')
 app_error_logger = LoggerFactory.getInstance('app')
 
@@ -91,7 +91,7 @@ class GoogleSearchEngine(BaseSearchEngine):
             
             if not links and jump:
                 app_error_logger.error(u"GoogleSearchEnginge Failed. Trying with Google Scrapper")
-                from core.data_mining.search_engines.google.google_scraper import GoogleScraper
+                from data_mining.search_engines.google.google_scraper import GoogleScraper
                 googleScrapper = GoogleScraper(query=self.query,
                                          language=self.language,
                                          country=self.country,

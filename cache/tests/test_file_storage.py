@@ -3,7 +3,7 @@
 
 import unittest
 import time
-from core.cache.file_storage import FileStorage
+from cache.file_storage import FileStorage
 
 
 class FileStorageTest(unittest.TestCase):

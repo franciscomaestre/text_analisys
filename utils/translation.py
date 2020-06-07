@@ -36,9 +36,9 @@ import os
 import re
 from threading import local
 
-from django.utils.encoding import force_text
-from django.utils.safestring import SafeData, mark_safe
-from django.utils import six
+from utils.utils.encoding import force_text
+from utils.utils.safestring import SafeData, mark_safe
+from utils.utils import six
 
 class TranslatorCommentWarning(SyntaxWarning):
     pass

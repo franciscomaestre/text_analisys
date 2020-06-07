@@ -4,7 +4,7 @@
 import nltk
 from nltk.probability import FreqDist
 from config import settings
-from core.seo.containers.seo_document import _getMandatoryBlockTokens
+from seo.containers.seo_document import _getMandatoryBlockTokens
 from urlparse import urlparse
 import numpy as np
 

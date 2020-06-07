@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from core.seo.containers.seo_document import SeoDocument
-from core.data_mining.web_pages.scraper import Scraper
+from seo.containers.seo_document import SeoDocument
+from data_mining.web_pages.scraper import Scraper
 
 class Classifier(object):
     

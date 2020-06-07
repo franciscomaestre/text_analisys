@@ -1,4 +1,4 @@
-from core.cache.file_storage import FileStorage
+from cache.file_storage import FileStorage
 from config import settings
 import sys
 
@@ -16,7 +16,7 @@ class FileStorageFactory(object):
                                                                   {
                                                                    'timeout':settings.STORAGE_CACHE_TIMEOUT,
                                                                    'compress':settings.STORAGE_CACHE_COMPRESS,
-                                                                   'max_entries': sys.maxint,
+                                                                   'max_entries': '99999',
                                                                    'cull_frequency': 10
                                                                    }
                                                                 )

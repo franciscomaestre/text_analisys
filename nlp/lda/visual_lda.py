@@ -9,7 +9,7 @@ import json
 
 ## numpy array serializable
 import numpy as np
-from core.nlp.lda.classifier import findLdaTopicNames
+from nlp.lda.classifier import findLdaTopicNames
 
 class NumPyArangeEncoder(json.JSONEncoder):
     def default(self, obj):

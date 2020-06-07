@@ -4,7 +4,7 @@
 import gensim
 import operator
 import math
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage_factory import FileStorageFactory
 from config import settings
 
 from utils.logger import LoggerFactory

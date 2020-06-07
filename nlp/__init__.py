@@ -6,16 +6,10 @@ import nltk
 import re
 from nltk.stem.snowball import SnowballStemmer
 
-from string import maketrans
-import pattern.en as pattern_en  # @UnresolvedImport
-import pattern.es as pattern_es  # @UnresolvedImport
-import pattern.fr as pattern_fr  # @UnresolvedImport
-import pattern.de as pattern_de  # @UnresolvedImport
-import pattern.it as pattern_it  # @UnresolvedImport
-from core.nlp.stop_words import StopWords
+from nlp.stop_words import StopWords
 
 from utils.logger import LoggerFactory
-from core.cache.memcached_factory import MemcachedFactory
+from cache.memcached_factory import MemcachedFactory
 from utils.translator import TranslatorFactory
 app_logger = LoggerFactory.getInstance('app')
 
@@ -32,6 +26,12 @@ def getNltkLanguage(language):
         return 'english'
 
 def _getSingularize(word, language):
+    import pattern.en as pattern_en  # @UnresolvedImport
+    import pattern.es as pattern_es  # @UnresolvedImport
+    import pattern.fr as pattern_fr  # @UnresolvedImport
+    import pattern.de as pattern_de  # @UnresolvedImport
+    import pattern.it as pattern_it  # @UnresolvedImport
+
     if language == "es":
         return pattern_es.singularize(word)
     elif language == "en":
@@ -46,6 +46,12 @@ def _getSingularize(word, language):
         return pattern_en.singularize(word)
 
 def _getLemma(word, language):
+    import pattern.en as pattern_en  # @UnresolvedImport
+    import pattern.es as pattern_es  # @UnresolvedImport
+    import pattern.fr as pattern_fr  # @UnresolvedImport
+    import pattern.de as pattern_de  # @UnresolvedImport
+    import pattern.it as pattern_it  # @UnresolvedImport
+
     if language == "es":
         return pattern_es.lemma(word)
     elif language == "en":
@@ -61,6 +67,12 @@ def _getLemma(word, language):
     
 
 def _getParse(word, language):
+    import pattern.en as pattern_en  # @UnresolvedImport
+    import pattern.es as pattern_es  # @UnresolvedImport
+    import pattern.fr as pattern_fr  # @UnresolvedImport
+    import pattern.de as pattern_de  # @UnresolvedImport
+    import pattern.it as pattern_it  # @UnresolvedImport
+
     if language == "es":
         return pattern_es.parse(word)
     elif language == "en":
@@ -173,7 +185,7 @@ def sentenceTokenizer(text, language):
     return [translator.trans(sentence).strip(" .,:") for sentence in nltk.sent_tokenize(text, getNltkLanguage(language)) if len(sentence.split()) > 2]
 
 
-def intersection(iterableA, iterableB, key=unicode.lower, negate=False):
+def intersection(iterableA, iterableB, key="", negate=False):
     """Return the intersection of two iterables with respect to `key` function.
         print intersection('Today I am fine'.split(),
                            'Hello How a re you TODAY'.split(),

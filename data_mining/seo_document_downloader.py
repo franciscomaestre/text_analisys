@@ -4,19 +4,19 @@
 import threading
 import re
 from config import settings
-from core.concurrence.workers_pool_factory import WorkersPoolFactory
-from core.concurrence.callback_wait import CallbackWait
-from core.cache.file_storage_factory import FileStorageFactory
-from core.seo.containers.seo_library import SeoLibrary
-from core.seo.containers.seo_document import SeoDocument
+from concurrence.workers_pool_factory import WorkersPoolFactory
+from concurrence.callback_wait import CallbackWait
+from cache.file_storage_factory import FileStorageFactory
+from seo.containers.seo_library import SeoLibrary
+from seo.containers.seo_document import SeoDocument
 
 from utils.logger import LoggerFactory
 import random
-from core.data_mining.search_engines.google.google_api_search import GoogleSearchEngine
-from core.data_mining.search_engines.google import getGoogleHost
-from core.data_mining.search_engines.google.google_scraper import GoogleScraper
-from core.data_mining.search_engines.bing.bing_search import BingSearch
-from core.data_mining.web_pages.scraper import Scraper
+from data_mining.search_engines.google.google_api_search import GoogleSearchEngine
+from data_mining.search_engines.google import getGoogleHost
+from data_mining.search_engines.google.google_scraper import GoogleScraper
+from data_mining.search_engines.bing.bing_search import BingSearch
+from data_mining.web_pages.scraper import Scraper
 
 app_download_logger = LoggerFactory.getInstance('downloader')
 app_logger = LoggerFactory.getInstance('app')

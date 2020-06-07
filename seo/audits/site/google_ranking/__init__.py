@@ -3,10 +3,10 @@
 import urlparse
 from collections import OrderedDict
 
-from core.seo.audits.site.google_ranking.domain_google_ranking import DomainGoogleRankingInfo,\
+from seo.audits.site.google_ranking.domain_google_ranking import DomainGoogleRankingInfo,\
     GoogleRankedUrl
-from core.data_mining.search_engines.google.google_scraper import GoogleScraper
-from core.data_mining.search_engines.google import getGoogleHost
+from data_mining.search_engines.google.google_scraper import GoogleScraper
+from data_mining.search_engines.google import getGoogleHost
 
 MAX_COMPETENCE_URLS = 10
 

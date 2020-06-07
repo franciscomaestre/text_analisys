@@ -3,12 +3,12 @@
 
 import math
 import operator
-from core.nlp.word2vec import word2vecScored
+from nlp.word2vec import word2vecScored
 from nltk import ngrams as nltk_ngrams
-from core.nlp.wdfIdf import wdfIdf
+from nlp.wdfIdf import wdfIdf
 
 from utils.logger import LoggerFactory
-from core.nlp import wordListLemmatizer
+from nlp import wordListLemmatizer
 from config import settings
 from collections import Counter
 app_logger = LoggerFactory.getInstance('app')

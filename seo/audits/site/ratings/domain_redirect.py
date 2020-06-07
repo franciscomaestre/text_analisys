@@ -6,7 +6,7 @@ import urllib2
 import tldextract
 from urlparse import urlparse
 
-from core.seo.containers.ratings import SiteAuditRating
+from seo.containers.ratings import SiteAuditRating
 from utils.level import Level
 from utils.code import Code
 

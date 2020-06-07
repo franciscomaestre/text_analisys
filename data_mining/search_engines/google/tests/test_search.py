@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from core.data_mining.search_engines.google.google_api_search import GoogleSearchEngine
-from core.data_mining.search_engines.google.google_scraper import GoogleScraper
-from core.data_mining.search_engines.google.google_selenium import GoogleSelenium
+from data_mining.search_engines.google.google_api_search import GoogleSearchEngine
+from data_mining.search_engines.google.google_scraper import GoogleScraper
+from data_mining.search_engines.google.google_selenium import GoogleSelenium
 
 class GoogleSearchTest(unittest.TestCase):
 

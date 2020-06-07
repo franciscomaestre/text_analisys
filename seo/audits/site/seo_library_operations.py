@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 def _getSeoLibraryExtended(sentences, seoLibrary, useProxy=False):
-    from core.data_mining.seo_document_downloader import SeoDocumentDownloader
+    from data_mining.seo_document_downloader import SeoDocumentDownloader
     from config import settings
     
     seoDocuments = []
@@ -24,7 +24,7 @@ def _getSeoLibraryExtended(sentences, seoLibrary, useProxy=False):
     seoDocuments.extend(seoLibrary.seoDocuments)
     seoDocumentsDict = {seoDocument.link:seoDocument for seoDocument in seoDocuments}
         
-    from core.seo.containers.seo_library import SeoLibrary    
+    from seo.containers.seo_library import SeoLibrary    
     seoLibraryExtended = SeoLibrary(seoLibrary.query+u' extended', seoLibrary.language, seoLibrary.country)
     seoLibraryExtended.seoDocuments = seoDocumentsDict.values()
     
@@ -33,7 +33,7 @@ def _getSeoLibraryExtended(sentences, seoLibrary, useProxy=False):
 def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
     
     import tldextract
-    from core.data_mining.seo_document_downloader import SeoDocumentDownloader
+    from data_mining.seo_document_downloader import SeoDocumentDownloader
     from config import settings
 
     '''

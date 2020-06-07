@@ -4,9 +4,9 @@ import pickle
 import hashlib
 import time
 
-from core.cache.django.base import DEFAULT_TIMEOUT, BaseCache
+from cache.utils.base import DEFAULT_TIMEOUT, BaseCache
 import six
-from core.cache.django.encoding import force_bytes
+from cache.utils.encoding import force_bytes
 
 class BaseMemcachedCache(BaseCache):
     def __init__(self, server, params, library, value_not_found_exception):

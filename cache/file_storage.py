@@ -7,15 +7,14 @@ import zlib
 import hashlib
 
 try:
-    from django.utils.six.moves import cPickle as pickle
+    from cache.utils.six.moves import cPickle as pickle
 except ImportError:
     import pickle
 
-from django.base import DEFAULT_TIMEOUT
-
-from django.filebased import FileBasedCache
-from django.move import file_move_safe
-from django.encoding import force_bytes
+from cache.utils.base import DEFAULT_TIMEOUT
+from cache.utils.filebased import FileBasedCache
+from cache.utils.move import file_move_safe
+from cache.utils.encoding import force_bytes
 
 from utils.logger import LoggerFactory
 app_cache_logger = LoggerFactory.getInstance('SeoAppCache')

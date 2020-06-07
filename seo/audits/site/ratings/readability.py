@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from core.seo.audits.text.readability_text import ReadabilityText
-from core.seo.containers.ratings import SiteAuditRating
+from seo.audits.text.readability_text import ReadabilityText
+from seo.containers.ratings import SiteAuditRating
 from utils.level import Level
 from utils.code import Code
 

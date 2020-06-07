@@ -3,7 +3,7 @@
 
 import re
 import math
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage_factory import FileStorageFactory
 from utils.logger import LoggerFactory
 from config import settings
 from utils.proxy_manager import ProxyManager
@@ -62,7 +62,7 @@ class GoogleSeleniumPlus(object):
                 app_logger.error(u"%s" % ex)
             
             if not links and jump:
-                from core.data_mining.search_engines.google.google_api_search import GoogleSearchEngine
+                from data_mining.search_engines.google.google_api_search import GoogleSearchEngine
                 app_logger.error(u"Google Selenium Failed. Trying with SearchEngine")
                 searchEngine = GoogleSearchEngine(self.query,
                                                   self.language,
@@ -145,7 +145,7 @@ class GoogleSeleniumPlus(object):
                 typeQuery(box, partialQuery)      
     
                 randomSleep(0.05, 0.25)
-                print u'-'*80
+                print(u'-'*80)
             
             finally:
                 browser.close()
@@ -237,7 +237,7 @@ def main():
     
     results = google._search(0)
     
-    print len(results)
+    print(len(results))
     
     google = GoogleSeleniumPlus(u'comprar pelotas',
                            language='es',
@@ -247,7 +247,7 @@ def main():
     
     results = google._search(0)
     
-    print len(results)
+    print(len(results))
     
     google = GoogleSeleniumPlus(u'mangare spagetti',
                            language='it',
@@ -257,7 +257,7 @@ def main():
     
     results = google._search(0)
     
-    print len(results)
+    print(len(results))
     
     google = GoogleSeleniumPlus(u'acheter eau',
                            language='fr',
@@ -267,7 +267,7 @@ def main():
     
     results = google._search(0)
     
-    print len(results)
+    print(len(results))
     
     google = GoogleSeleniumPlus(u'cristiano ronaldo',
                            language='pt',
@@ -277,7 +277,7 @@ def main():
     
     results = google._search(0)
     
-    print len(results)
+    print(len(results))
     
     google = GoogleSeleniumPlus(u'buy balls',
                            language='en',
@@ -287,12 +287,12 @@ def main():
     
     results = google._search(0)
     
-    print len(results)
+    print(len(results))
     
     
     
     #for result in results:
-    #    print result
+    #    print(result)
 
 if __name__ == '__main__':
     main()

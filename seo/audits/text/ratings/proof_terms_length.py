@@ -4,7 +4,7 @@ from utils.translation import ugettext as _
 
 from utils.level import Level
 from config import settings
-from core.seo.containers.ratings import TextAuditRating
+from seo.containers.ratings import TextAuditRating
 from utils.code import Code
 from utils.median_distribution import getMedianDistributionInfo
 

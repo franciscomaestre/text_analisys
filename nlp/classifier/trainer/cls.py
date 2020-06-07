@@ -5,8 +5,8 @@ from experiments.trainer.topics.extractor import getTopicList, getData
 from experiments.trainer.models.trainer import getModelTrained,\
     testTrainModel
 from sklearn.linear_model import SGDClassifier
-from core.data_mining.web_pages.scraper import Scraper
-from core.seo.containers.seo_document import SeoDocument
+from data_mining.web_pages.scraper import Scraper
+from seo.containers.seo_document import SeoDocument
 from config import settings
 import platform
 import gc

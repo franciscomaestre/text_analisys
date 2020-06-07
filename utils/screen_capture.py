@@ -20,8 +20,8 @@ from selenium import webdriver
 import cStringIO
 from config import settings
 import sys
-from core.cache.file_storage import FileStorage
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage import FileStorage
+from cache.file_storage_factory import FileStorageFactory
 import time
 
 class ScreenCapture(object):
@@ -181,7 +181,7 @@ class ScreenCapture(object):
 if __name__ == '__main__':
     screenCapture = ScreenCapture(u'http://www.animalclan.com/es/6310-collar-scalibor-oferta.html', width=305, height=165)
     result = screenCapture.snapshot()
-    print result
+    print(result)
     
     
     

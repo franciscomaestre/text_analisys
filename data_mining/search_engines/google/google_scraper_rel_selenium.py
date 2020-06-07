@@ -9,7 +9,7 @@ Use Selenium and open:
 
 """
 
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage_factory import FileStorageFactory
 from utils.logger import LoggerFactory
 from utils.proxy_manager import ProxyManager
 from pyvirtualdisplay import Display
@@ -217,9 +217,9 @@ def main():
     
     results = google._search(0, retries=2)
     
-    print len(results)
+    print(len(results))
     for result in results:
-        print result
+        print(result)
 
 if __name__ == '__main__':
     main()

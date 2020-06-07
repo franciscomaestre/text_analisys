@@ -3,7 +3,7 @@
 from config import settings
 from utils.logger import LoggerFactory
 import operator
-from core.nlp.classifier.classifier_factory import ClassifierFactory
+from nlp.classifier.classifier_factory import ClassifierFactory
 
 app_logger = LoggerFactory.getInstance('app')          
 

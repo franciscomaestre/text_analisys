@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from core.seo.containers.ratings import SiteAuditRating
+from seo.containers.ratings import SiteAuditRating
 from utils.level import Level
 from utils.code import Code
-from core.data_mining.geolocation_tool import GeoLocationTool
+from data_mining.geolocation_tool import GeoLocationTool
 
 class GeolocationRating(object):
     RATING_NAME = u'GEOLOCATION'

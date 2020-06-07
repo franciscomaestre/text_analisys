@@ -5,7 +5,7 @@
 Settings and configuration for Seologies.
 
 Values will be read from the module specified by the DJANGO_SETTINGS_MODULE environment
-variable, and then from django.conf.global_settings; see the global settings file for
+variable, and then from utils.conf.global_settings; see the global settings file for
 a list of all possible variables.
 
 

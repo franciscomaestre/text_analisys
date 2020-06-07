@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from core.data_mining.seo_document_downloader import SeoDocumentDownloader
+from data_mining.seo_document_downloader import SeoDocumentDownloader
 from utils.translator import TranslatorFactory
 import random
-from core.cache.file_storage_factory import FileStorageFactory
+from cache.file_storage_factory import FileStorageFactory
 from config import settings
-from core.search_engines.google import getGoogleHost
-from core.search_engines.google.google_scraper import GoogleScraper
+from search_engines.google import getGoogleHost
+from search_engines.google.google_scraper import GoogleScraper
 from utils.remain_timer import RemainTimer
 from experiments.trainer.models.trainer_data import TrainerData
 from multiprocessing.pool import ThreadPool

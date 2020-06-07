@@ -8,7 +8,7 @@ import re
 
 from bs4 import Comment
 from bs4.element import NavigableString
-from core.data_mining.web_pages import scrapping_rules
+from data_mining.web_pages import scrapping_rules
 
 
 class NotEnougthTextException(Exception):

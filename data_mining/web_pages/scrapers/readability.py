@@ -25,9 +25,9 @@ Created on 7 de jul. de 2016
 import re
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
-from core.data_mining.web_pages.scrapers.base import ScraperBase,\
+from data_mining.web_pages.scrapers.base import ScraperBase,\
     NotEnougthTextException
-from core.data_mining.web_pages import scrapping_rules
+from data_mining.web_pages import scrapping_rules
 
 
 # Si la clase del elemento o el id contiene algo parecido, no los procesamos
@@ -476,8 +476,8 @@ if __name__ == '__main__':
             ]
 
     def download(url):
-        from core.concurrence.urllib3_pool_factory import Urllib3PoolFactory
-        from core.data_mining.web_pages.scraper import UserAgent    
+        from concurrence.urllib3_pool_factory import Urllib3PoolFactory
+        from data_mining.web_pages.scraper import UserAgent    
         
         pool = Urllib3PoolFactory.getSameOriginPool()
         request = pool.request('GET', url,

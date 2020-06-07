@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from config import settings
-from core.nlp.classifier.classifier_factory import ClassifierFactory
+from nlp.classifier.classifier_factory import ClassifierFactory
 
 
 class ClassifierTest(unittest.TestCase):

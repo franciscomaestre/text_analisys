@@ -4,8 +4,8 @@ from utils.translation import ugettext as _
 
 from utils.level import Level
 from utils.code import Code
-from core.seo.containers.ratings import TextAuditRating
-from core.seo.containers.seo_document import _getMandatoryBlockTokens
+from seo.containers.ratings import TextAuditRating
+from seo.containers.seo_document import _getMandatoryBlockTokens
 from config import settings
 from utils.median_distribution import getMedianDistributionInfo
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from core.seo.audits.text.readability_text import ReadabilityText
+from seo.audits.text.readability_text import ReadabilityText
 
 class ReadabilityTest(unittest.TestCase):
 

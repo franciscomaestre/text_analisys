@@ -1,13 +1,9 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+import os
+import sys
 
-"""
-Mirar:
- https://github.com/buriy/python-readability
- https://github.com/timbertson/python-readability/blob/master/readability/readability.py
- 
- https://github.com/MHordecki/readability-redux/blob/master/readability/readability.js
-"""
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "../../"))
+os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
 
 import re
 import urllib
@@ -17,13 +13,13 @@ from bs4 import BeautifulSoup
 from gremlims import cp1252
 
 from config import settings
-from core.cache.file_storage_factory import FileStorageFactory
-from core.seo.containers.seo_document import DataDocument
+from cache.file_storage_factory import FileStorageFactory
+from seo.containers.seo_document import DataDocument
 from bs4.element import NavigableString
-from core.concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from concurrence.urllib3_pool_factory import Urllib3PoolFactory
 from urlparse import urlparse
-from core.data_mining.web_pages.scrapers.readability import Readability
-from core.concurrence.request_factory import RequestFactory
+from data_mining.web_pages.scrapers.readability import Readability
+from concurrence.request_factory import RequestFactory
 
 try:
     import magic
@@ -131,8 +127,8 @@ class Scraper(object):
             bodyText, soup = self.scrapingFilterClass().getFilteredText(self.rawHtml)
             bodyText = bodyText.strip() ####.lower()
             dataDocument.bodyWords = self._getNumWords(soup.body)
-        except Exception, e:
-            app_download_logger.error(u'_scrapping %s' % e)
+        except Exception as ex:
+            app_download_logger.error(u'_scrapping %s' % ex)
             bodyText = ''
         
         dataDocument.text = bodyText
@@ -156,8 +152,8 @@ class Scraper(object):
             
             self.redirectedUrl = response.url
             
-            print self.url
-            print self.redirectedUrl
+            print(self.url)
+            print(self.redirectedUrl)
             
             if response.status_code > 399:
                 raise Exception(u"status: %s" % response.status_code)
@@ -242,12 +238,6 @@ class Encoder(object):
 
 if __name__ == '__main__':
 
-    import os
-    import sys
-    PROJECT_ROOT = os.path.dirname(__file__)
-    sys.path.insert(0, os.path.join(PROJECT_ROOT, "../"))
-    os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
-
     urls = [u'http://www.zooplus.es/shop/tienda_perros/pienso_perros/royal_canin_club_selection/royal_canin_special_club/56533',
             u'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html',
             
@@ -281,7 +271,7 @@ if __name__ == '__main__':
 
     for url in urls[-1:]:
         print(80*'-')
-        print url
+        print(url)
         scraper = Scraper(url, scrapingFilterClass=Readability)
         dataDocument = scraper._getDataDocument()
         

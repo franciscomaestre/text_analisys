@@ -14,13 +14,13 @@ class Translator(object):
     def trans(self, toTranslate):
         try:
             return toTranslate.translate(self.translateTable).strip()
-        except Exception, e:
-            app_logger.error(u"Translator First Try: %s %s" % (e, toTranslate))
+        except Exception as ex:
+            app_logger.error(u"Translator First Try: %s %s" % (ex, toTranslate))
             try:
                 toTranslate = u'%s' % toTranslate
                 return toTranslate.translate(self.translateTable).strip()
-            except Exception, e:
-                app_logger.error(u"Translator Second Try: %s %s" % (e, toTranslate))
+            except Exception as ex:
+                app_logger.error(u"Translator Second Try: %s %s" % (ex, toTranslate))
     
 class TranslatorFactory(object):
     

@@ -4,11 +4,11 @@
 from config import settings
 
 import  urllib3, hashlib
-from core.cache.file_storage_factory import FileStorageFactory
-from core.cache.django.encoding import force_bytes
-from core.nlp.stop_words import StopWords
+from cache.file_storage_factory import FileStorageFactory
+from cache.django.encoding import force_bytes
+from nlp.stop_words import StopWords
 import language_check #@UnresolvedImport
-from core.nlp.hunspell import hunSpellcheck
+from nlp.hunspell import hunSpellcheck
 urllib3.disable_warnings() #@UndefinedVariable
 
 from utils.logger import LoggerFactory

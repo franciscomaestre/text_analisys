@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 from bs4 import Comment
 from bs4.element import NavigableString
 from utils.logger import LoggerFactory
-from core.data_mining.web_pages import scrapping_rules as rules
-from core.data_mining.web_pages.scrapers.base import ScraperBase
+from data_mining.web_pages import scrapping_rules as rules
+from data_mining.web_pages.scrapers.base import ScraperBase
 
 SIGMA_MULTIPLIER = 1
 SEPARATOR = u' '
@@ -372,9 +372,9 @@ class Naive(ScraperBase):
         
         '''
         for block in filteredBestBlocks:
-            print block.score
-            print block.get_text(separator = SEPARATOR, strip = True, types=[NavigableString])
-            print u'-'*40
+            print(block.score)
+            print(block.get_text(separator = SEPARATOR, strip = True, types=[NavigableString]))
+            print(u'-'*40)
         '''
         
         if returnText:
@@ -414,9 +414,9 @@ if __name__ == '__main__':
             ]
     
     def download(url):
-        from core.concurrence.urllib3_pool_factory import Urllib3PoolFactory    
+        from concurrence.urllib3_pool_factory import Urllib3PoolFactory    
         pool = Urllib3PoolFactory.getSameOriginPool()
-        from core.data_mining.web_pages.scraper import UserAgent
+        from data_mining.web_pages.scraper import UserAgent
         request = pool.request('GET', url,
                                headers={"User-Agent": UserAgent.chrome , "Accept" : "text/html" })
         return request.data    

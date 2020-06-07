@@ -1,5 +1,5 @@
 import unittest
-from core.cache.memcached_factory import MemcachedFactory
+from cache.memcached_factory import MemcachedFactory
 
 
 class MemCachedTest(unittest.TestCase):

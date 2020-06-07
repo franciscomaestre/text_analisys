@@ -1,5 +1,5 @@
 import unittest
-from core.data_mining.web_pages.scraper import Scraper
+from data_mining.web_pages.scraper import Scraper
 
 class ScrappingTestCase(unittest.TestCase):
 

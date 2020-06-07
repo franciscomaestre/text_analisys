@@ -3,7 +3,7 @@
 
 import cPickle
 from config import settings
-from core.nlp.classifier.classifier import Classifier
+from nlp.classifier.classifier import Classifier
 import time
 
 class ClassifierFactory(object):

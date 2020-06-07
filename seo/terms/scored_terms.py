@@ -3,12 +3,12 @@
 
 import gensim
 import operator
-from core.seo.containers.seo_word import SeoWord
-from core.cache.file_storage_factory import FileStorageFactory
+from seo.containers.seo_word import SeoWord
+from cache.file_storage_factory import FileStorageFactory
 from config import settings
 
 from utils.logger import LoggerFactory
-from core.nlp import wordListLemmatizer
+from nlp import wordListLemmatizer
 app_logger = LoggerFactory.getInstance('app')
 
 class ScoredTerms(object):

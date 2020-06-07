@@ -4,7 +4,7 @@ import numpy as np
 import math
 import operator
 
-from core.nlp.classifier.classifier_factory import ClassifierFactory
+from nlp.classifier.classifier_factory import ClassifierFactory
 
 #
 # gensim. Phrase collocation detection: 

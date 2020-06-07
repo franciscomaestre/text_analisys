@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from core.seo.audits.text.language_tool_checker import checkGrammar
-from core.seo.containers.ratings import SiteAuditRating
+from seo.audits.text.language_tool_checker import checkGrammar
+from seo.containers.ratings import SiteAuditRating
 from utils.level import Level
 from utils.code import Code
 

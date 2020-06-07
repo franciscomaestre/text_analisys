@@ -48,7 +48,7 @@ def builtwith(url, headers=None, html=None, user_agent='builtwith'):
                 headers = response.headers
             if html is None:
                 html = response.read()
-        except Exception, e:
+        except Exception as e:
             print 'Error BuildWith:', e
             request = None
 

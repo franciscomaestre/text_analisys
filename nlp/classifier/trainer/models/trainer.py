@@ -15,7 +15,7 @@ from config import settings
 SEARCH_BEST_PARAMS = False
 
 def getModelTrained(clf, trainerData, reloadModel=True):
-    filename = settings.CLASSIFIER_MODELS_PATH+u'/model_%s_%s_%s.pkl' % (trainerData.language, trainerData.country, settings.TRAINER_TREE_TYPE)
+    filename = settings.CLASSIFIER_MODELS_PATH+'/model_%s_%s_%s.pkl' % (trainerData.language, trainerData.country, settings.TRAINER_TREE_TYPE)
     model = None
     if not reloadModel and settings.CACHE:
         try:
@@ -31,7 +31,7 @@ def getModelTrained(clf, trainerData, reloadModel=True):
 
 def _trainModel(clf, trainerData):
 
-    print u'Entrenando ---- %s model Percentage %s' % (str(clf).split('(')[0], settings.TRAINER_DOWNLOAD_PERCENTAGE)
+    print 'Entrenando ---- %s model Percentage %s' % (str(clf).split('(')[0], settings.TRAINER_DOWNLOAD_PERCENTAGE)
     
     trainedDocuments, testDocuments, trainedTargets, testTargets = train_test_split(trainerData.documentList, trainerData.targetList,  test_size=0.20, random_state=33)
     
@@ -75,7 +75,7 @@ def _trainModel(clf, trainerData):
     trainer = _getTrainer(pipeline, parameters)
     
     if not SEARCH_BEST_PARAMS:
-        print u'NO GRID SEARCH'
+        print 'NO GRID SEARCH'
     else:
         print(u"Performing grid search...")
         print(u"parameters:")

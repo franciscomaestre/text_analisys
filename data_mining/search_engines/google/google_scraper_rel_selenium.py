@@ -24,9 +24,9 @@ app_logger = LoggerFactory.getInstance('app')
 
 class GoogleScraperRelatedSelenium(object):
     # curl "https://www.google.com/complete/search?sclient=psy-ab&q=c&oq=&gs_l=&pbx=1&bav=on.2,or.r_cp.&bvm=bv.124088155,d.d2s&fp=9391b118d8a56416&biw=1920&bih=297&pf=p&gs_rn=64&gs_ri=psy-ab&tok=wSdima2QSRsPhPxH6zKkvA&pq=google"%"20autocomplete"%"20api&cp=1&gs_id=6&xhr=t&tch=1&ech=1&psi=mO1XV73TAob-aJ-bo0A.1465380250414.1" -H "Referer: https://www.google.com/" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36" --compressed
-    CACHE_PATH = u'/googleSearchEngineRelated'
-    HOST_TEMPLATE = u'http://%s?pws=0'
-    HOST_COM_TEMPLATE = u'http://%s/ncr?pws=0#'
+    CACHE_PATH = '/googleSearchEngineRelated'
+    HOST_TEMPLATE = 'http://%s?pws=0'
+    HOST_COM_TEMPLATE = 'http://%s/ncr?pws=0#'
     PAGE_LIMIT = 10
     
     CHANGE_MATRIX = {
@@ -37,12 +37,12 @@ class GoogleScraperRelatedSelenium(object):
         't': ('y', 78)
     }
     
-    def __init__(self, query, language=u'es', country=u'ES', googleHost=u'google.es'):
+    def __init__(self, query, language='es', country='ES', googleHost='google.es'):
         self.query = query
         self.language = language
         self.country = country
-        if not u'http' in googleHost:
-            if u'.com' in googleHost:
+        if not 'http' in googleHost:
+            if '.com' in googleHost:
                 #El .com necesita el parametro No Country Redirect si la IP no es de US
                 self.googleHost = GoogleScraperRelatedSelenium.HOST_COM_TEMPLATE % googleHost
             else:
@@ -52,7 +52,7 @@ class GoogleScraperRelatedSelenium(object):
         
     def search(self):
         fileStorage = FileStorageFactory.getFileStorage(GoogleScraperRelatedSelenium.CACHE_PATH)
-        key = u'%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
+        key = '%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
         related = fileStorage.get(key)
         if not related:
             related = []
@@ -81,7 +81,7 @@ class GoogleScraperRelatedSelenium(object):
         try:
             proxyInfo = ProxyManager.getNextProxy()
             
-            myProxy = u'%s:%s' % (proxyInfo.host,proxyInfo.port)
+            myProxy = '%s:%s' % (proxyInfo.host,proxyInfo.port)
     
             proxy = Proxy({
                 'proxyType': ProxyType.MANUAL,
@@ -98,7 +98,7 @@ class GoogleScraperRelatedSelenium(object):
     
                 browser.implicitly_wait(10)
     
-                browser.get(u'%s' % (self.googleHost,))
+                browser.get('%s' % (self.googleHost,))
                 
                 box = browser.find_element_by_id('lst-ib')
                 
@@ -137,7 +137,7 @@ class GoogleScraperRelatedSelenium(object):
         if not results:
             ProxyManager.invalidateProxy()
             if retries > 0:
-                print u'Reintentando... %s' % self.query
+                print 'Reintentando... %s' % self.query
                 return self._search(start, retries=retries-1, visible=visible)
         
         return results
@@ -153,22 +153,22 @@ def typeLetter(box, letter, mistakes = True):
         if random.uniform(1, 100) > GoogleScraperRelatedSelenium.CHANGE_MATRIX[letter][1] and mistakes:
             #Si la letra está en la matriz, evaluamos que
             #pueda equivocarse
-            box.send_keys(u'%s' % GoogleScraperRelatedSelenium.CHANGE_MATRIX[letter][0])
+            box.send_keys('%s' % GoogleScraperRelatedSelenium.CHANGE_MATRIX[letter][0])
             if random.uniform(1, 100) > 65:
                 #Corregir ahora o después
                 randomSleep(0.2, 0.4)
                 box.send_keys(Keys.BACKSPACE) 
                 randomSleep(0.1, 0.2)
-                box.send_keys(u'%s' % letter)
+                box.send_keys('%s' % letter)
                 return letter
             else:
                 return GoogleScraperRelatedSelenium.CHANGE_MATRIX[letter][0]
         else:
-            box.send_keys(u'%s' % letter)
+            box.send_keys('%s' % letter)
             randomSleep(0.04, 0.08)
             return letter
     else:
-        box.send_keys(u'%s' % letter)
+        box.send_keys('%s' % letter)
         randomSleep(0.04, 0.08)
         return letter
             
@@ -210,7 +210,7 @@ def typeQuery(box, query):
 
 def main():
    
-    google = GoogleScraperRelatedSelenium(u'coches',
+    google = GoogleScraperRelatedSelenium('coches',
                            language='es',
                            country='ES',
                            googleHost='google.es')

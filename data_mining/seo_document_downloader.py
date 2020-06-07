@@ -24,7 +24,7 @@ app_logger = LoggerFactory.getInstance('app')
 
 class SeoDocumentDownloader(object):
     
-    CACHE_PATH = u'/queryDocumentsDownloaded'
+    CACHE_PATH = '/queryDocumentsDownloaded'
     
     def __init__(self, query, language='es', country='ES', 
                        searchEngine = settings.DOWNLOADER_SEARCH_ENGINE, 
@@ -59,15 +59,15 @@ class SeoDocumentDownloader(object):
         
         '''
         fileStorage = FileStorageFactory.getFileStorage(SeoDocumentDownloader.CACHE_PATH)
-        key = u'seoDocumentDownloader_%s_%s_%s_%s' % (self.query, self.language, self.country, self.downloadLimit)
+        key = 'seoDocumentDownloader_%s_%s_%s_%s' % (self.query, self.language, self.country, self.downloadLimit)
         seoDocumentDict = fileStorage.get(key, default={})
         if not seoDocumentDict or not settings.CACHE or settings.SCRAPER_RELOAD_CONTENT:
             self.getLinks()
             
             downloadPool = WorkersPoolFactory.getPool()
-            # print u'Urls to download: '
+            # print 'Urls to download: '
             # print self.links
-            app_download_logger.info(u'Urls to download: ')
+            app_download_logger.info('Urls to download: ')
             app_download_logger.info(self.links)
             
             results = []
@@ -75,7 +75,7 @@ class SeoDocumentDownloader(object):
             regex = re.compile(settings.FORBIDDEN_URLS)
             
             for order, link in enumerate(self.links):
-                #print u'%s --> %s' % (order, link)
+                #print '%s --> %s' % (order, link)
                 if not regex.search(link):
                     result = downloadPool.apply_async(getSeoDocumentConcurrence, 
                                                       args=(link, order, self.language, self.country, self.sameOrigin, self.useProxy))
@@ -95,10 +95,10 @@ class SeoDocumentDownloader(object):
                     pass
             # Con esto nos aseguramos que no haya url repetidas
             
-            app_download_logger.info(u'Number of documents downloaded (AFTER): %s' % len(seoDocumentDict))
-            app_download_logger.info(u'Max to download: %s' % len(self.links))
-            # print u'Number of documents downloaded (AFTER): %s' % len(seoDocumentDict)
-            # print u'Max to download: %s' % len(self.links)
+            app_download_logger.info('Number of documents downloaded (AFTER): %s' % len(seoDocumentDict))
+            app_download_logger.info('Max to download: %s' % len(self.links))
+            # print 'Number of documents downloaded (AFTER): %s' % len(seoDocumentDict)
+            # print 'Max to download: %s' % len(self.links)
             
             fileStorage.set(key, seoDocumentDict)
         
@@ -131,15 +131,15 @@ class SeoDocumentDownloader(object):
                                              googleHost=getGoogleHost(self.country),
                                              max_results=self.downloadLimit)
                     self.links = googleScrapper.search()
-            except Exception, e:
-                app_logger.info(u'%s' % e)
-                app_logger.info(u'Google Scrapper and API failed. Trying Bing....')
+            except Exception as e:
+                app_logger.info('%s' % e)
+                app_logger.info('Google Scrapper and API failed. Trying Bing....')
                 try:
                     bing = BingSearch()
-                    self.links = bing.search_all(query=self.query, downloadLimit=self.downloadLimit, market=u'%s-%s' % (self.language, self.country))
-                except Exception, e:
-                    app_logger.info(u'%s' % e)
-                    app_logger.info(u'Bing also failed, we are lost....')
+                    self.links = bing.search_all(query=self.query, downloadLimit=self.downloadLimit, market='%s-%s' % (self.language, self.country))
+                except Exception as e:
+                    app_logger.info('%s' % e)
+                    app_logger.info('Bing also failed, we are lost....')
                     self.links = []
             
         return self.links
@@ -148,10 +148,10 @@ class SeoDocumentDownloader(object):
         if not self.links:
             try:
                 bing = BingSearch()
-                self.links = bing.search_all(query=self.query, downloadLimit=self.downloadLimit, market=u'%s-%s' % (self.language, self.country))
-            except Exception, e:
-                app_logger.info(u'%s' % e)
-                app_logger.info(u'Bing failed, trying google....')
+                self.links = bing.search_all(query=self.query, downloadLimit=self.downloadLimit, market='%s-%s' % (self.language, self.country))
+            except Exception as e:
+                app_logger.info('%s' % e)
+                app_logger.info('Bing failed, trying google....')
                 try:
                     searchEngine = GoogleSearchEngine(self.query,
                                                       self.language,
@@ -159,9 +159,9 @@ class SeoDocumentDownloader(object):
                                                       getGoogleHost(self.country),
                                                       max_results=self.downloadLimit)
                     self.links = searchEngine.search()
-                except Exception, e:
-                    app_logger.info(u'%s' % e)
-                    app_logger.info(u'Google Failed, we are lost....')
+                except Exception as e:
+                    app_logger.info('%s' % e)
+                    app_logger.info('Google Failed, we are lost....')
                     self.links = []
             
         return self.links
@@ -177,7 +177,7 @@ def getSeoDocumentConcurrence(link, order, language, country, sameOrigin, usePro
     except Exception as ex:
         app_download_logger.error(u"%s --> %s" % (link, ex))
         # print(ex)
-        # print(u'_Error : %s' % link)
+        # print('_Error : %s' % link)
     return None
         
         

@@ -23,7 +23,7 @@ LANGUAGE_CODES = {
 'Greek':'el',
 'Hebrew':'iw',
 'Hindi':'hi',
-'Hungarian':'hu',
+'Hungarian':'h',
 'Icelandic':'is',
 'Indonesian':'id',
 'Italian':'it',
@@ -35,7 +35,7 @@ LANGUAGE_CODES = {
 'Polish':'pl',
 'Portuguese':'pt',
 'Romanian':'ro',
-'Russian':'ru',
+'Russian':'r',
 'Serbian':'sr',
 'Slovak':'sk',
 'Slovenian':'sl',
@@ -44,6 +44,6 @@ LANGUAGE_CODES = {
 'Thai':'th',
 'Turkish':'tr',
 'Ukrainian':'uk',
-'Urdu':'ur',
+'Urd':'ur',
 'Vietnamese':'vi'
 }

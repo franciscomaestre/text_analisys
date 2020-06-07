@@ -89,7 +89,7 @@ class Readability(ScraperBase):
         # borramos nodos con clases e ids en UNLIKELY_CANDIDATES
         for node in soup.body.find_all():
             
-            tag_to_search = u' '.join(node.get('class', []))  + node.get('id', '')
+            tag_to_search = ' '.join(node.get('class', []))  + node.get('id', '')
             if UNLIKELY_CANDIDATES.match(tag_to_search):
                 node.extract()
 
@@ -121,7 +121,7 @@ class Readability(ScraperBase):
                         for nav in navigables:
                             # create <p>
                             newTag = soup.new_tag('p')
-                            newTag.string = u'%s'%nav
+                            newTag.string = '%s'%nav
                             nav.replace_with(newTag)                            
                             nodesToScore.append(newTag) 
 
@@ -237,17 +237,17 @@ class Readability(ScraperBase):
         '''
         for node in bestNodes:
             print node.contentScore
-            text = node.get_text(separator=u' ', strip=True, types=[NavigableString])
+            text = node.get_text(separator=' ', strip=True, types=[NavigableString])
             print len(text)
             print text
         '''
 
         if returnText:
 
-            resultText = [block.get_text(separator=u' ', strip=True, types=[NavigableString]) for block in bestNodes]
+            resultText = [block.get_text(separator=' ', strip=True, types=[NavigableString]) for block in bestNodes]
 
             # change multiple spaces to only one
-            resultText = [re.sub(u' +', u' ', text) for text in resultText]
+            resultText = [re.sub(' +', ' ', text) for text in resultText]
 
             ##resultText = [block.get_text(separator=rules.SPLITTER, strip=True, types=[NavigableString]) for block in bestNodes]
             return scrapping_rules.SPLITTER.join(resultText), soup
@@ -303,10 +303,10 @@ class Readability(ScraperBase):
         weight = 0
         
         # Look for a special classname 
-        node_class = unicode(node.get("class", u''))
+        node_class = unicode(node.get("class", ''))
         # Look for a special ID 
-        node_id = unicode(node.get("id", u''))
-        tag_to_search = u' '.join(node_class)  + node_id
+        node_id = unicode(node.get("id", ''))
+        tag_to_search = ' '.join(node_class)  + node_id
     
         if tag_to_search.strip():
             if NEGATIVE_REGEX.match(tag_to_search):
@@ -315,7 +315,7 @@ class Readability(ScraperBase):
                 weight += 25.0    
         
         # Look for hidden elements
-        node_style = unicode(node.get('style', u''))
+        node_style = unicode(node.get('style', ''))
         if node_style:
             if HIDDEN_REGEX.match(node_style):
                 weight -= 25.0
@@ -372,13 +372,13 @@ class Readability(ScraperBase):
             
             if append:
                 bestNodes.append(sibling)
-                text = node.get_text(separator=u' ', strip=True, types=[NavigableString])
+                text = node.get_text(separator=' ', strip=True, types=[NavigableString])
                 nodes_length += len(text)
     
         return bestNodes, nodes_length
 
     def getLinkDensity(self, node):
-        if node.name == u'a':
+        if node.name == 'a':
             return 1.0
         
         link_length = len("".join([i.get_text(separator='', strip=True, types=[NavigableString]) or "" for i in node.findAll("a")]))
@@ -406,7 +406,7 @@ class Readability(ScraperBase):
         
         is_navigable = isinstance(last_content, NavigableString)
         text = last_content if is_navigable else last_content.get_text(separator=' ', strip=True, types=[NavigableString])
-        text = text.strip(' .:;)\n\r') + u'. '
+        text = text.strip(' .:;)\n\r') + '. '
         if is_navigable:
             node.contents[-1].replace_with(NavigableString(text))
             #print node.contents[-1]
@@ -424,7 +424,7 @@ class Readability(ScraperBase):
             return node
         
         if len(list(parent.children)) == 1: 
-            text = node.get_text(separator=u' ', strip=True, types=[NavigableString])
+            text = node.get_text(separator=' ', strip=True, types=[NavigableString])
             newTag = soup.new_tag('p')
             newTag.string = text
             parent.replace_with(newTag)                            
@@ -439,40 +439,40 @@ if __name__ == '__main__':
     sys.path.insert(0, os.path.join(PROJECT_ROOT, "../"))
     os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
 
-    urls = [u'http://www.zooplus.es/shop/tienda_perros/pienso_perros/royal_canin_club_selection/royal_canin_special_club/56533',
-            u'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html',
-            u'http://www.elmundo.es',
-            u'http://www.animalclan.com/es/15295-royal-canin-gatos-norweian-forest.html?%20search_query=norw&results=1',
-            u'https://serps.com/library/',
-            u'http://www.publico.es/sociedad/liberado-madrid-joven-al-padre.html',
-            u'http://www.publico.es/',
-            u'http://www.elmundo.es/',
-            u'http://www.zooplus.es/shop/tienda_perros/pienso_perros/taste_of_the_wild/taste_of_the_wild_adult/409340',
-            u'http://www.decathlon.es/zapatillas-de-running-hombre-kalenji-ekiden-one-gris--id_8351755.html',
-            u'http://www.luciasecasa.com/',
-            u'http://www.luciasecasa.com/boda-de-la-semana/la-boda-la-semana-marta-jaime/',
-            u'http://www.animalclan.com/es/6310-collar-scalibor-oferta.html',
-            u'http://www.scubadocadiz.es/',            
-            u'http://www.oceanoadictos.com/',
-            u'https://www.yumping.com/buceo/cadiz',
-            u'https://www.yumping.com/buceo/naturexplorer-buceo--e593',
-            u'http://www.carmenrios.com/',
-            u'http://afectadosclausulasuelo.org/',
-            u'https://www.pet-supermarket.co.uk/Dog/Dog-Collars,-Tags-and-Leashes/c/PSGB00054',
-            u'https://themebot.com/news/phpnuke',
-            u'https://2a1-blog.phpnuke.org/en/c388140/php-returning-values-by-reference',
-            u'https://3acd-descargar.phpnuke.org/es/c09262/microsoft-office-2010',
-            u'https://2a1-downloads.phpnuke.org/en/c388143/five-nights-at-freddy-s-4',
-            u'https://2msoffice-downloads.phpnuke.org/en/c09262/microsoft-office-2010',
-            u'https://plus.google.com/photos/+MarcojesusrfBlogspot/albums/6275651924159238113/6275651927033663970?pid=6275651927033663970&oid=116996185249041591814',
+    urls = ['http://www.zooplus.es/shop/tienda_perros/pienso_perros/royal_canin_club_selection/royal_canin_special_club/56533',
+            'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html',
+            'http://www.elmundo.es',
+            'http://www.animalclan.com/es/15295-royal-canin-gatos-norweian-forest.html?%20search_query=norw&results=1',
+            'https://serps.com/library/',
+            'http://www.publico.es/sociedad/liberado-madrid-joven-al-padre.html',
+            'http://www.publico.es/',
+            'http://www.elmundo.es/',
+            'http://www.zooplus.es/shop/tienda_perros/pienso_perros/taste_of_the_wild/taste_of_the_wild_adult/409340',
+            'http://www.decathlon.es/zapatillas-de-running-hombre-kalenji-ekiden-one-gris--id_8351755.html',
+            'http://www.luciasecasa.com/',
+            'http://www.luciasecasa.com/boda-de-la-semana/la-boda-la-semana-marta-jaime/',
+            'http://www.animalclan.com/es/6310-collar-scalibor-oferta.html',
+            'http://www.scubadocadiz.es/',            
+            'http://www.oceanoadictos.com/',
+            'https://www.yumping.com/buceo/cadiz',
+            'https://www.yumping.com/buceo/naturexplorer-buceo--e593',
+            'http://www.carmenrios.com/',
+            'http://afectadosclausulasuelo.org/',
+            'https://www.pet-supermarket.co.uk/Dog/Dog-Collars,-Tags-and-Leashes/c/PSGB00054',
+            'https://themebot.com/news/phpnuke',
+            'https://2a1-blog.phpnuke.org/en/c388140/php-returning-values-by-reference',
+            'https://3acd-descargar.phpnuke.org/es/c09262/microsoft-office-2010',
+            'https://2a1-downloads.phpnuke.org/en/c388143/five-nights-at-freddy-s-4',
+            'https://2msoffice-downloads.phpnuke.org/en/c09262/microsoft-office-2010',
+            'https://plus.google.com/photos/+MarcojesusrfBlogspot/albums/6275651924159238113/6275651927033663970?pid=6275651927033663970&oid=116996185249041591814',
             
-            u'http://www.muyinteresante.es/salud/articulo/el-gusto-por-el-cafe-viene-marcado-en-los-genes-911412757909',
-            u'http://economia.elpais.com/economia/2016/07/20/actualidad/1469042079_929155.html',
-            u'http://economia.elpais.com/economia/2014/02/03/actualidad/1391418999_915675.html',
+            'http://www.muyinteresante.es/salud/articulo/el-gusto-por-el-cafe-viene-marcado-en-los-genes-911412757909',
+            'http://economia.elpais.com/economia/2016/07/20/actualidad/1469042079_929155.html',
+            'http://economia.elpais.com/economia/2014/02/03/actualidad/1391418999_915675.html',
             
-            u'http://selnd.com/2b1ftyW',
-            u'http://www.muyinteresante.es/tag/genetica',
-            u'http://www.muyinteresante.es/salud/articulo/revelan-por-que-unas-personas-envejecen-antes-que-otras-281436359667',
+            'http://selnd.com/2b1ftyW',
+            'http://www.muyinteresante.es/tag/genetica',
+            'http://www.muyinteresante.es/salud/articulo/revelan-por-que-unas-personas-envejecen-antes-que-otras-281436359667',
             ]
 
     def download(url):
@@ -495,24 +495,24 @@ if __name__ == '__main__':
 
     for url in urls[-1:]:
         print(80*'-')
-        print url
+        print(url)
         rawHtml = download(url)
         try:
             bestNodes, soup = readabilityFilter.getFilteredText(rawHtml, returnText=False)
         except Exception as ex:
             bestNodes = []
-            print u'%s' % ex
+            print('%s' % ex)
         
         htmlText = u"<html><head><meta charset='UTF-8' /></head><body>"
-        htmlText += u'<div><strong><a href="%s">%s' % (url, url) + u'</a></strong></div><hr><br/><br/>'
+        htmlText += '<div><strong><a href="%s">%s' % (url, url) + '</a></strong></div><hr><br/><br/>'
         for node in bestNodes:
             #print node.contentScore
-            text = node.get_text(separator=u' ', strip=True, types=[NavigableString])
-            htmlText += u'<div style="color:blue; font-weight:bold; background-color:#ddd; text-align:center; padding: 10px 0px;"> Score: ' + u"%s  (%s)" % (node.contentScore,len(text)) + u'</div>'
-            htmlText += u'<div>' + u"%s"%node + u'</div><hr>'
+            text = node.get_text(separator=' ', strip=True, types=[NavigableString])
+            htmlText += '<div style="color:blue; font-weight:bold; background-color:#ddd; text-align:center; padding: 10px 0px;"> Score: ' + u"%s  (%s)" % (node.contentScore,len(text)) + '</div>'
+            htmlText += '<div>' + u"%s"%node + '</div><hr>'
             #print len(text)
             #print text        
-        htmlText += u'</body></html>'
+        htmlText += '</body></html>'
         
         f=open(path, 'w')
         f.write(htmlText.encode('utf8'))

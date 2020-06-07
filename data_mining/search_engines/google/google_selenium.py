@@ -16,15 +16,15 @@ app_error_logger = LoggerFactory.getInstance('app')
 
 class GoogleSelenium(object):
     
-    CACHE_PATH = u'/googleSearchEngine'
-    HOST_TEMPLATE = u'http://%s/search'
+    CACHE_PATH = '/googleSearchEngine'
+    HOST_TEMPLATE = 'http://%s/search'
     PAGE_LIMIT = 100
     
-    def __init__(self, query, language=u'es', country=u'ES', googleHost=u'google.es', max_results=10):
+    def __init__(self, query, language='es', country='ES', googleHost='google.es', max_results=10):
         self.query = query
         self.language = language
         self.country = country
-        if not u'http' in googleHost:
+        if not 'http' in googleHost:
             self.googleHost = GoogleSelenium.HOST_TEMPLATE % googleHost
         else:
             self.googleHost = googleHost
@@ -32,7 +32,7 @@ class GoogleSelenium(object):
         
     def search(self, jump=True):
         fileStorage = FileStorageFactory.getFileStorage(GoogleSelenium.CACHE_PATH)
-        key = u'%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
+        key = '%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
         links = fileStorage.get(key)
         if not links:
             pages = int(math.ceil(self.max_results * 1.0 / GoogleSelenium.PAGE_LIMIT))
@@ -89,7 +89,7 @@ class GoogleSelenium(object):
             
             proxyInfo = ProxyManager.getNextProxy()
             
-            myProxy = u'%s:%s' % (proxyInfo.host, proxyInfo.port)
+            myProxy = '%s:%s' % (proxyInfo.host, proxyInfo.port)
     
             proxy = Proxy({
                 'proxyType': ProxyType.MANUAL,
@@ -108,7 +108,7 @@ class GoogleSelenium(object):
                 '''
                 driver.implicitly_wait(10)
                 
-                driver.get(u'%s?%s' % (self.googleHost,params))
+                driver.get('%s?%s' % (self.googleHost,params))
                 
                 app_error_logger.info(u"%s" % driver.current_url)
                 
@@ -140,7 +140,7 @@ class GoogleSelenium(object):
 
 def main():
     
-    google = GoogleSelenium(u'buy balls',
+    google = GoogleSelenium('buy balls',
                            language='en',
                            country='GB',
                            googleHost='google.co.uk',
@@ -150,7 +150,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSelenium(u'comprar pelotas',
+    google = GoogleSelenium('comprar pelotas',
                            language='es',
                            country='ES',
                            googleHost='google.es',
@@ -160,7 +160,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSelenium(u'mangare spagetti',
+    google = GoogleSelenium('mangare spagetti',
                            language='it',
                            country='IT',
                            googleHost='google.it',
@@ -170,7 +170,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSelenium(u'acheter eau',
+    google = GoogleSelenium('acheter ea',
                            language='fr',
                            country='FR',
                            googleHost='google.fr',
@@ -180,7 +180,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSelenium(u'cristiano ronaldo',
+    google = GoogleSelenium('cristiano ronaldo',
                            language='pt',
                            country='PT',
                            googleHost='google.pt',
@@ -190,7 +190,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSelenium(u'buy balls',
+    google = GoogleSelenium('buy balls',
                            language='en',
                            country='US',
                            googleHost='google.com',

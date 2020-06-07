@@ -100,7 +100,7 @@ def removeStopWords(tokens, language, nonStopWords=[]):
     
     translator = TranslatorFactory.getTranslator(removeAccents=False)         # Mantenemos los acentos
     pattern = re.compile(u"^[a-z0-9áéíóúàèìòùñ-ûîïü._/-]{3,24}$", re.IGNORECASE)  # Mantenemos las mayusculas
-    tokens = [translator.trans(t.strip(u'()[]".,;:')) for t in tokens]
+    tokens = [translator.trans(t.strip('()[]".,;:')) for t in tokens]
     tokens = [t for t in tokens if t in nonStopWords or (pattern.match(t) and t.lower() not in stopWords) ]
     return tokens
 
@@ -112,12 +112,12 @@ def wordListSingularize(wordList, language="es"):
     return resultDict
 
 def getSingular(word, language):
-    key = u'singularize:%s:%s' % (word, language)
+    key = 'singularize:%s:%s' % (word, language)
     singularCached = MemcachedFactory.getInstance(space='nlp').get(key)
     if not singularCached:
         singularCached = _getSingular(word, language)
         MemcachedFactory.getInstance(space='nlp').set(key, {'word':singularCached})
-    return u'%s' % singularCached['word']
+    return '%s' % singularCached['word']
 
 def _getSingular(word, language):
     result = _getParse(word, language)
@@ -139,7 +139,7 @@ def wordListLemmatizer(wordList, language="es"):
                 rootParts = []
                 for part in cleanWord.split():
                     rootParts.append(getRoot(part, language))
-                root = u' '.join(rootParts)
+                root = ' '.join(rootParts)
             if not root in resultDict:
                 resultDict[root] = []
             resultDict[root].append(word)
@@ -147,19 +147,19 @@ def wordListLemmatizer(wordList, language="es"):
         except Exception as ex:
             app_logger.error(word)
             app_logger.error(root)
-            app_logger.error(u'wordListLemmatizer')
+            app_logger.error('wordListLemmatizer')
             app_logger.error(wordList)
             app_logger.error(u"wordListLemmatizer: %s" % ex)
     return resultList, resultDict
 
 def getRoot(word, language):
     try:
-        key = u'nlp:root:%s:%s' % (u'_'.join(word.split()), language)
-        lemmaCached = MemcachedFactory.getInstance(space=u'nlp').get(key, rawKey=True)
-        _id = u'word'
+        key = 'nlp:root:%s:%s' % ('_'.join(word.split()), language)
+        lemmaCached = MemcachedFactory.getInstance(space='nlp').get(key, rawKey=True)
+        _id = 'word'
         if not lemmaCached:
             lemmaCached = {_id: _getRoot(word, language)}
-            MemcachedFactory.getInstance(space=u'nlp').set(key, lemmaCached, rawKey=True)
+            MemcachedFactory.getInstance(space='nlp').set(key, lemmaCached, rawKey=True)
         return lemmaCached[_id]
     except Exception as ex:
         print(ex)
@@ -168,7 +168,7 @@ def getRoot(word, language):
 def _getRoot(word, language):
     try:
         snowballStemmer = SnowballStemmer(getNltkLanguage(language))
-        root = snowballStemmer.stem(u'%s' % word)
+        root = snowballStemmer.stem('%s' % word)
         return root
     except Exception as ex:
         print(ex)
@@ -177,7 +177,7 @@ def _getRoot(word, language):
 def wordListStemmer(wordList, language="es"):
     # Devuelve un array de tuplas (stem,key)
     snowballStemmer = SnowballStemmer(getNltkLanguage(language))
-    stemmerData = [(snowballStemmer.stem(u'%s' % w), u'%s' % w) for w in wordList]
+    stemmerData = [(snowballStemmer.stem('%s' % w), '%s' % w) for w in wordList]
     return stemmerData
 
 def sentenceTokenizer(text, language):

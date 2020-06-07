@@ -63,7 +63,7 @@ def main(verticals, outfile):
     for node_data in verticals:
         parent_ids = node_data.get('parent_ids', [])
         parent_ids = [int(p) for p in parent_ids]
-        name = u'%s' % json.loads(r'"%s"' %node_data['name'])
+        name = '%s' % json.loads(r'"%s"' %node_data['name'])
         index = int(node_data.get('id', -1))
         
         node = Node(index, name, parent_ids)

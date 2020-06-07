@@ -3,7 +3,7 @@
 
 DEBUG = True
 
-LOCAL_CPUS = [u'tocomocho']
+LOCAL_CPUS = ['tocomocho']
 
 CACHE = True
 

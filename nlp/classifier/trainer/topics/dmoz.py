@@ -25,11 +25,11 @@ import re
 
 if __name__ == '__main__':
     
-    TREE_START = u'Top/World/Español/'
-    DONT_PARSE = u'Regional'
+    TREE_START = 'Top/World/Español/'
+    DONT_PARSE = 'Regional'
     
     from lxml import etree
-    filename = os.getcwd() + './../' + u'data/dmoz/structure.rdf.u8'
+    filename = os.getcwd() + './../' + 'data/dmoz/structure.rdf.u8'
     i = 0
     added = 0
     for event, elem in etree.iterparse(filename, events=('start', 'end')):
@@ -62,7 +62,7 @@ if __name__ == '__main__':
                         elif child.tag == "{http://dmoz.org/rdf/}narrow" or\
                              child.tag == "{http://dmoz.org/rdf/}narrow1" or\
                              child.tag == "{http://dmoz.org/rdf/}narrow2":
-                            print u'child %s' % child.attrib['{http://www.w3.org/TR/RDF/}resource'] 
+                            print 'child %s' % child.attrib['{http://www.w3.org/TR/RDF/}resource'] 
  
                     #clear the elements, without this, your RAM will saturate, with this only 30Mb of ram is used
                     elem.clear()

@@ -43,4 +43,4 @@ if __name__ == '__main__':
     print('Hellow', hunSpellcheck('en_US', 'Hellow'))
     print('NATO', hunSpellcheck('en_US', 'NATO'))
     print('Maquediches', hunSpellcheck('it_IT', 'Maquediches'))
-    print(u'España', hunSpellcheck('es_ES', u'España'))
+    print('España', hunSpellcheck('es_ES', 'España'))

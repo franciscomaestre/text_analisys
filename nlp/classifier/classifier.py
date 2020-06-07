@@ -18,7 +18,7 @@ class Classifier(object):
         return self.predictDocument(seoDocument)
         
     def predictDocument(self, seoDocument):
-        text = u' '.join(seoDocument.getTextTokens(lemmatize=True))
+        text = ' '.join(seoDocument.getTextTokens(lemmatize=True))
         return self.predictText(text)
         
     def predictText(self, text):
@@ -27,7 +27,7 @@ class Classifier(object):
             results = []
             for i in range(0, len(probability)):
                 results.append((self.model.steps[-1][-1].classes_[i], int(probability[i] * 100)))
-            return [(u'%s' % topic, prob) for topic, prob in sorted(results, key=lambda tup: tup[1], reverse=True)[0:3]]
+            return [('%s' % topic, prob) for topic, prob in sorted(results, key=lambda tup: tup[1], reverse=True)[0:3]]
         except Exception as ex:
             raise ex
         

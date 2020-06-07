@@ -20,9 +20,9 @@ app_logger = LoggerFactory.getInstance('app')
 
 class GoogleSeleniumPlus(object):
     
-    CACHE_PATH = u'/googleSearchEngine'
-    HOST_TEMPLATE = u'http://%s/#'
-    HOST_COM_TEMPLATE = u'http://%s/ncr#'
+    CACHE_PATH = '/googleSearchEngine'
+    HOST_TEMPLATE = 'http://%s/#'
+    HOST_COM_TEMPLATE = 'http://%s/ncr#'
     PAGE_LIMIT = 100
     
     CHANGE_MATRIX = {
@@ -33,12 +33,12 @@ class GoogleSeleniumPlus(object):
         't': ('y', 78)
     }
     
-    def __init__(self, query, language=u'es', country=u'ES', googleHost=u'google.es', max_results=10):
+    def __init__(self, query, language='es', country='ES', googleHost='google.es', max_results=10):
         self.query = query
         self.language = language
         self.country = country
-        if not u'http' in googleHost:
-            if u'.com' in googleHost:
+        if not 'http' in googleHost:
+            if '.com' in googleHost:
                 #El .com necesita el parametro No Country Redirect si la IP no es de US
                 self.googleHost = GoogleSeleniumPlus.HOST_COM_TEMPLATE % googleHost
             else:
@@ -49,7 +49,7 @@ class GoogleSeleniumPlus(object):
         
     def search(self, jump=True):
         fileStorage = FileStorageFactory.getFileStorage(GoogleSeleniumPlus.CACHE_PATH)
-        key = u'%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
+        key = '%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
         links = fileStorage.get(key)
         if not links:
             pages = int(math.ceil(self.max_results * 1.0 / GoogleSeleniumPlus.PAGE_LIMIT))
@@ -105,7 +105,7 @@ class GoogleSeleniumPlus(object):
         try:
             proxyInfo = ProxyManager.getNextProxy()
             
-            myProxy = u'%s:%s' % (proxyInfo.host,proxyInfo.port)
+            myProxy = '%s:%s' % (proxyInfo.host,proxyInfo.port)
     
             proxy = Proxy({
                 'proxyType': ProxyType.MANUAL,
@@ -122,7 +122,7 @@ class GoogleSeleniumPlus(object):
     
                 browser.implicitly_wait(10)
     
-                browser.get(u'%s#%s' % (self.googleHost,params))
+                browser.get('%s#%s' % (self.googleHost,params))
                 
                 app_logger.info(u"%s" % browser.current_url)
                 
@@ -136,7 +136,7 @@ class GoogleSeleniumPlus(object):
                         
                 box = browser.find_element_by_id('lst-ib')
                 
-                partialQuery = u' '.join(self.query.split()[1:])
+                partialQuery = ' '.join(self.query.split()[1:])
                 
                 for _letter in partialQuery: 
                     box.send_keys(Keys.BACKSPACE)
@@ -145,7 +145,7 @@ class GoogleSeleniumPlus(object):
                 typeQuery(box, partialQuery)      
     
                 randomSleep(0.05, 0.25)
-                print(u'-'*80)
+                print('-'*80)
             
             finally:
                 browser.close()
@@ -172,22 +172,22 @@ def typeLetter(box, letter, mistakes = True):
         if random.uniform(1, 100) > GoogleSeleniumPlus.CHANGE_MATRIX[letter][1] and mistakes:
             #Si la letra está en la matriz, evaluamos que
             #pueda equivocarse
-            box.send_keys(u'%s' % GoogleSeleniumPlus.CHANGE_MATRIX[letter][0])
+            box.send_keys('%s' % GoogleSeleniumPlus.CHANGE_MATRIX[letter][0])
             if random.uniform(1, 100) > 65:
                 #Corregir ahora o después
                 randomSleep(0.2, 0.4)
                 box.send_keys(Keys.BACKSPACE) 
                 randomSleep(0.1, 0.2)
-                box.send_keys(u'%s' % letter)
+                box.send_keys('%s' % letter)
                 return letter
             else:
                 return GoogleSeleniumPlus.CHANGE_MATRIX[letter][0]
         else:
-            box.send_keys(u'%s' % letter)
+            box.send_keys('%s' % letter)
             randomSleep(0.04, 0.08)
             return letter
     else:
-        box.send_keys(u'%s' % letter)
+        box.send_keys('%s' % letter)
         randomSleep(0.04, 0.08)
         return letter
             
@@ -229,7 +229,7 @@ def typeQuery(box, query):
 
 def main():
     
-    google = GoogleSeleniumPlus(u'buy balls',
+    google = GoogleSeleniumPlus('buy balls',
                            language='en',
                            country='GB',
                            googleHost='google.co.uk',
@@ -239,7 +239,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSeleniumPlus(u'comprar pelotas',
+    google = GoogleSeleniumPlus('comprar pelotas',
                            language='es',
                            country='ES',
                            googleHost='google.es',
@@ -249,7 +249,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSeleniumPlus(u'mangare spagetti',
+    google = GoogleSeleniumPlus('mangare spagetti',
                            language='it',
                            country='IT',
                            googleHost='google.it',
@@ -259,7 +259,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSeleniumPlus(u'acheter eau',
+    google = GoogleSeleniumPlus('acheter ea',
                            language='fr',
                            country='FR',
                            googleHost='google.fr',
@@ -269,7 +269,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSeleniumPlus(u'cristiano ronaldo',
+    google = GoogleSeleniumPlus('cristiano ronaldo',
                            language='pt',
                            country='PT',
                            googleHost='google.pt',
@@ -279,7 +279,7 @@ def main():
     
     print(len(results))
     
-    google = GoogleSeleniumPlus(u'buy balls',
+    google = GoogleSeleniumPlus('buy balls',
                            language='en',
                            country='US',
                            googleHost='google.com',

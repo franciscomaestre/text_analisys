@@ -16,11 +16,11 @@ class ScrappingTestCase(unittest.TestCase):
         
     def test_01_extract_no_cache(self):
         self.data = ScrappingTestCase.googleScraper._getDataDocument()
-        self.assertIsNotNone(self.data, u'no data downloaded')
+        self.assertIsNotNone(self.data, 'no data downloaded')
 
     def test_02_extract_cache(self):
         self.data = ScrappingTestCase.googleScraper.getDataDocument()
-        self.assertIsNotNone(self.data, u'no data downloaded')
+        self.assertIsNotNone(self.data, 'no data downloaded')
 
 
 def suite():

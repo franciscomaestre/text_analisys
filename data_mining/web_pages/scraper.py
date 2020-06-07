@@ -17,7 +17,7 @@ from cache.file_storage_factory import FileStorageFactory
 from seo.containers.seo_document import DataDocument
 from bs4.element import NavigableString
 from concurrence.urllib3_pool_factory import Urllib3PoolFactory
-from urlparse import urlparse
+from urllib.parse import urlparse
 from data_mining.web_pages.scrapers.readability import Readability
 from concurrence.request_factory import RequestFactory
 
@@ -45,7 +45,7 @@ class UserAgent(object):
 DEFAULT_SCAPING_FILTER = Readability
 class Scraper(object):
     
-    CACHE_PATH = u'/dataDocument'
+    CACHE_PATH = '/dataDocument'
     
     def __init__(self, url, 
                        userAgent=UserAgent.seologies, 
@@ -98,37 +98,37 @@ class Scraper(object):
         dataDocument.uri = dataDocument.uri.replace('.', ' ')
         dataDocument.uri = dataDocument.uri.replace('/', ' ')
         dataDocument.uri = dataDocument.uri.replace('_', ' ')
-        dataDocument.uri = u'%s' % dataDocument.uri.replace('htm', '')
+        dataDocument.uri = '%s' % dataDocument.uri.replace('htm', '')
         
         soup = BeautifulSoup(self.rawHtml, 'lxml')
         
         title = soup.head.title if soup.head else None
-        titleText = title.get_text(separator=u' ', strip=True, types=[NavigableString]).strip().lower() if title else ''
+        titleText = title.get_text(separator=' ', strip=True, types=[NavigableString]).strip().lower() if title else ''
         dataDocument.title = titleText
         
         #title = soup.head.title if soup.head else None
-        #titleText = title.get_text(separator=u' ', strip=True, types=[NavigableString]).strip().lower().replace(u'-', u' ') if title else ''
+        #titleText = title.get_text(separator=' ', strip=True, types=[NavigableString]).strip().lower().replace('-', ' ') if title else ''
         
         meta = soup.head.find(attrs={"name":"description"}) if soup.head else None
-        dataDocument.meta = u'%s' % meta.attrs['content'].strip().lower() if meta and 'content' in meta.attrs else ''
+        dataDocument.meta = '%s' % meta.attrs['content'].strip().lower() if meta and 'content' in meta.attrs else ''
         
         keywords = soup.head.find(attrs={"name":"keywords"}) if soup.head else None
-        dataDocument.keywords = u'%s' % keywords.attrs['content'].strip().lower() if keywords and 'content' in keywords.attrs else ''
+        dataDocument.keywords = '%s' % keywords.attrs['content'].strip().lower() if keywords and 'content' in keywords.attrs else ''
 
-        dataDocument.h1 = [h1.get_text(separator=u' ', strip=True, types=[NavigableString]).strip().lower().replace(u'-', u' ') for h1 in soup.find_all('h1')]
-        dataDocument.h2 = [h2.get_text(separator=u' ', strip=True, types=[NavigableString]).strip().lower().replace(u'-', u' ') for h2 in soup.find_all('h2')]
-        dataDocument.strong = [strong.get_text(separator=u' ', strip=True, types=[NavigableString]).strip().lower().replace(u'-', u' ') for strong in soup.find_all(['strong', 'b'])]
-        dataDocument.alt = [u'%s' % image.get('alt').strip().lower().replace(u'-', u' ') for image in soup.find_all('img')  if image.get('alt')]
+        dataDocument.h1 = [h1.get_text(separator=' ', strip=True, types=[NavigableString]).strip().lower().replace('-', ' ') for h1 in soup.find_all('h1')]
+        dataDocument.h2 = [h2.get_text(separator=' ', strip=True, types=[NavigableString]).strip().lower().replace('-', ' ') for h2 in soup.find_all('h2')]
+        dataDocument.strong = [strong.get_text(separator=' ', strip=True, types=[NavigableString]).strip().lower().replace('-', ' ') for strong in soup.find_all(['strong', 'b'])]
+        dataDocument.alt = ['%s' % image.get('alt').strip().lower().replace('-', ' ') for image in soup.find_all('img')  if image.get('alt')]
         
         #facebook = soup.head.find(property='og:description') if soup.head else None
-        #facebookText = facebook.attrs['content'].strip().lower().replace(u'-', u' ') if facebook and 'content' in facebook.attrs else ''
+        #facebookText = facebook.attrs['content'].strip().lower().replace('-', ' ') if facebook and 'content' in facebook.attrs else ''
         
         try:
             bodyText, soup = self.scrapingFilterClass().getFilteredText(self.rawHtml)
             bodyText = bodyText.strip() ####.lower()
             dataDocument.bodyWords = self._getNumWords(soup.body)
         except Exception as ex:
-            app_download_logger.error(u'_scrapping %s' % ex)
+            app_download_logger.error('_scrapping %s' % ex)
             bodyText = ''
         
         dataDocument.text = bodyText
@@ -142,6 +142,7 @@ class Scraper(object):
     def download(self):
         try:
             if self.useProxy:
+                print("Usamos proxy")
                 pool = RequestFactory.getProxyPool()
             if self.sameOrigin:
                 pool = RequestFactory.getSameOriginPool()
@@ -170,7 +171,7 @@ class Scraper(object):
                 # print '_scraper: Filetype not compatible --> Removed from the app'
                 app_download_logger.error('_scraper: Filetype not compatible: %s --> Removed from the app' % self.url)
         except Exception as ex:
-            app_download_logger.error(u'_download %s' % ex)
+            app_download_logger.error('_download %s' % ex)
             raise DownloadException
         try:
             self.rawHtml = self.rawHtml.decode('utf8')
@@ -194,7 +195,7 @@ class Scraper(object):
         if not content_type and ('text' in mimeType):
             return True
         
-        app_download_logger.info(u'content-type: %s , data-mimetype: %s ' % (content_type, magic.from_buffer(data, mime=True)))
+        app_download_logger.info('content-type: %s , data-mimetype: %s ' % (content_type, magic.from_buffer(data, mime=True)))
         return False
     
 class Encoder(object):        
@@ -228,9 +229,6 @@ class Encoder(object):
             def fixup(m):
                 s = m.group(0)
                 return cp1252.get(s, s)
-            if isinstance(text, type("")):
-                # make sure we have a unicode string
-                text = unicode(text, "iso-8859-1")
             text = re.sub(u"[\x80-\xff]", fixup, text)
         return text
 
@@ -238,30 +236,11 @@ class Encoder(object):
 
 if __name__ == '__main__':
 
-    urls = [u'http://www.zooplus.es/shop/tienda_perros/pienso_perros/royal_canin_club_selection/royal_canin_special_club/56533',
-            u'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html',
-            
-            u'http://www.elmundo.es',
-            
-            u'http://www.animalclan.com/es/15295-royal-canin-gatos-norweian-forest.html?%20search_query=norw&results=1',
-            u'https://3acd-descargar.phpnuke.org/es/c09262/microsoft-office-2010',
-            
-            u'https://serps.com/library/',
-           
-            u'http://www.publico.es/sociedad/liberado-madrid-joven-al-padre.html',
-            u'http://www.publico.es/',
-            u'http://www.elmundo.es/',
-            u'http://www.zooplus.es/shop/tienda_perros/pienso_perros/taste_of_the_wild/taste_of_the_wild_adult/409340',
-            u'http://www.decathlon.es/zapatillas-de-running-hombre-kalenji-ekiden-one-gris--id_8351755.html',
-
-            u'http://www.luciasecasa.com/',
-            u'http://www.luciasecasa.com/boda-de-la-semana/la-boda-la-semana-marta-jaime/',
-            
-            u'http://www.helicopternewyorkcity.com/',
-            #u'http://www.animalclan.com/es/6310-collar-scalibor-oferta.html',            
+    urls = ['http://dinersclub.com.ec',
+            'https://www.discover.ec/portal/',
+            'http://www.elmundo.es',
+            'https://www.titanium.com.ec/portal/',          
             ]
-
-
 
     import tempfile 
     import webbrowser
@@ -269,27 +248,27 @@ if __name__ == '__main__':
     tmp=tempfile.NamedTemporaryFile(delete=False)
     path=tmp.name+'.html'
 
-    for url in urls[-1:]:
+    for url in urls:
         print(80*'-')
         print(url)
         scraper = Scraper(url, scrapingFilterClass=Readability)
         dataDocument = scraper._getDataDocument()
         
         htmlText = u"<html><head><meta charset='UTF-8' /></head><body>"
-        htmlText += u'<div><strong><a href="%s">%s' % (url, url) + u'</a></strong></div><hr><br/><br/>'
+        htmlText += '<div><strong><a href="%s">%s' % (url, url) + '</a></strong></div><hr><br/><br/>'
         
-        htmlText += u'<div>' + u"uri:      %s" % dataDocument.uri + u'</div><hr>'
-        htmlText += u'<div>' + u"title:    %s" % dataDocument.title + u'</div><hr>'
-        htmlText += u'<div>' + u"meta:     %s" % dataDocument.meta + u'</div><hr>'
-        htmlText += u'<div>' + u"keywords: %s" % dataDocument.keywords + u'</div><hr>'
-        htmlText += u'<div>' + u"h1:       %s" % dataDocument.h1 + u'</div><hr>'
-        htmlText += u'<div>' + u"h2:       %s" % dataDocument.h2 + u'</div><hr>'
-        htmlText += u'<div>' + u"strong:   %s" % dataDocument.strong + u'</div><hr>'
-        htmlText += u'<div>' + u"alt:      %s" % dataDocument.alt + u'</div><hr>'
-        htmlText += u'<div>' + dataDocument.text + u'</div><hr>'
-        htmlText += u'</body></html>'
+        htmlText += '<div>' + u"uri:      %s" % dataDocument.uri + '</div><hr>'
+        htmlText += '<div>' + u"title:    %s" % dataDocument.title + '</div><hr>'
+        htmlText += '<div>' + u"meta:     %s" % dataDocument.meta + '</div><hr>'
+        htmlText += '<div>' + u"keywords: %s" % dataDocument.keywords + '</div><hr>'
+        htmlText += '<div>' + u"h1:       %s" % dataDocument.h1 + '</div><hr>'
+        htmlText += '<div>' + u"h2:       %s" % dataDocument.h2 + '</div><hr>'
+        htmlText += '<div>' + u"strong:   %s" % dataDocument.strong + '</div><hr>'
+        htmlText += '<div>' + u"alt:      %s" % dataDocument.alt + '</div><hr>'
+        htmlText += '<div>' + dataDocument.text + '</div><hr>'
+        htmlText += '</body></html>'
         
         f=open(path, 'w')
-        f.write(htmlText.encode('utf8'))
+        f.write(htmlText)
         f.close()
         webbrowser.open('file://' + path)

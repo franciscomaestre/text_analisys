@@ -52,7 +52,7 @@ app_error_logger = LoggerFactory.getInstance('app')
 class GoogleSearchEngine(BaseSearchEngine):
     
     URL_TEMPLATE = 'https://www.googleapis.com/customsearch/v1?key=%s&cx=%s'
-    CACHE_PATH = u'/googleSearchEngine'
+    CACHE_PATH = '/googleSearchEngine'
 
     def __init__(self, query,
                        language='es',
@@ -75,7 +75,7 @@ class GoogleSearchEngine(BaseSearchEngine):
 
     def search(self, jump=True, exactSearch=False):
         fileStorage = FileStorageFactory.getFileStorage(GoogleSearchEngine.CACHE_PATH)
-        key = u'%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
+        key = '%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
         links = fileStorage.get(key)
         if not links or not settings.CACHE:
             app_error_logger.error(80 * '-')
@@ -87,7 +87,7 @@ class GoogleSearchEngine(BaseSearchEngine):
                              1)
                 links = [item.link for item in self.items]
             except Exception as ex:
-                app_error_logger.error(u'%s' % ex)
+                app_error_logger.error('%s' % ex)
             
             if not links and jump:
                 app_error_logger.error(u"GoogleSearchEnginge Failed. Trying with Google Scrapper")
@@ -183,7 +183,7 @@ class GoogleSearchEngine(BaseSearchEngine):
 
         if data.get("error", False):
             app_error_logger.error(u"%s" % (request.data))
-            raise Exception(u'Google Api Error - Check app.log to get more info')
+            raise Exception('Google Api Error - Check app.log to get more info')
  
         # searchInformation = GoogleSearchEngine.SearchInformation(data.get("searchInformation"))
 

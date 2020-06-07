@@ -19,11 +19,11 @@ app_logger = LoggerFactory.getInstance('app')
 
 class GoogleScraper(object):
     
-    CACHE_PATH = u'/googleSearchEngine'
-    HOST_TEMPLATE = u'http://%s/search'
+    CACHE_PATH = '/googleSearchEngine'
+    HOST_TEMPLATE = 'http://%s/search'
     PAGE_LIMIT = 80
     
-    def __init__(self, query, language=u'es', country=u'ES', googleHost=u'www.google.es', max_results=10):
+    def __init__(self, query, language='es', country='ES', googleHost='www.google.es', max_results=10):
         self.query = query
         self.language = language
         self.country = country
@@ -35,7 +35,7 @@ class GoogleScraper(object):
         jump: use GoogleSearchEngine if fails
         """
         fileStorage = FileStorageFactory.getFileStorage(GoogleScraper.CACHE_PATH)
-        key = u'%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
+        key = '%s.%s.%s.%s' % (self.query, self.language, self.country, self.max_results)
         links = fileStorage.get(key)
         if not links or not settings.CACHE:
             pages = int(math.ceil(self.max_results * 1.0 / GoogleScraper.PAGE_LIMIT))
@@ -123,8 +123,8 @@ class GoogleScraper(object):
         # If found : Print, else : Ignore the exception
         for h3 in h3tags:
             try:
-                results.append(urllib.unquote(u'http' + (re.search('http(.+)', h3.a['href']).group(1)).split('&')[0]))
-                ##results.append(u'http' + (re.search('http(.+)', h3.a['href']).group(1)).split('&')[0])
+                results.append(urllib.unquote('http' + (re.search('http(.+)', h3.a['href']).group(1)).split('&')[0]))
+                ##results.append('http' + (re.search('http(.+)', h3.a['href']).group(1)).split('&')[0])
             except Exception as ex:
                 app_logger.error(u"%s" % ex)
         
@@ -139,18 +139,18 @@ class GoogleScraper(object):
                 if not search_query in r.data:
                     ProxyManager.invalidateProxy()
                     if retries > 0:
-                        print u'Reintentando... %s' % self.query
+                        print 'Reintentando... %s' % self.query
                         time.sleep(random.uniform(0.0, 0.2))
                         return self._search(start, retries-1, exactSearch)
             except Exception as ex:
                 print(ex)
-                print u'Google Scrapper Error'
+                print 'Google Scrapper Error'
         
         return results
     
 
 def main():
-    google = GoogleScraper(u'músculos oblicuos',
+    google = GoogleScraper('músculos oblicuos',
                            language='es',
                            country='ES',
                            googleHost='google.es',

@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from xml.dom import minidom
-import urllib2
+import urllib3
 
 def getAlexaRanking(page):
     resultAlexa = {}
-    urlXml = u'http://data.alexa.com/data?cli=10&dat=snbamz&url=' + page
-    req = urllib2.Request(urlXml, headers={'User-Agent' : "Magic Browser"})
-    fileXml = urllib2.urlopen(req)
+    urlXml = 'http://data.alexa.com/data?cli=10&dat=snbamz&url=' + page
+    req = urllib3.Request(urlXml, headers={'User-Agent' : "Magic Browser"})
+    fileXml = urllib3.urlopen(req)
     xmlDocument = minidom.parse(fileXml)
     itemsSD = xmlDocument.getElementsByTagName('SD')
     

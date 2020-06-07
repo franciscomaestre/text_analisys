@@ -18,7 +18,7 @@ def getSeoLibraryMainCategories(seoLibrary, documentsLimit = settings.CLASSIFIER
 
 def _getSeoLibraryMainCategories(seoLibrary, classifierType, documentsLimit, numCategories):
     if settings.CLASSIFIER_ENABLED:
-        app_logger.debug(u'Comienza la carga del categorizador')
+        app_logger.debug('Comienza la carga del categorizador')
         result = {}
         categoriesPerSeoDocument = {}
         classifier = ClassifierFactory.getModel(seoLibrary.language, seoLibrary.country, classifierType)
@@ -27,7 +27,7 @@ def _getSeoLibraryMainCategories(seoLibrary, classifierType, documentsLimit, num
         for seoDocument in seoLibrary.seoDocuments[0:limit]:
             categories = classifier.predictDocument(seoDocument)
             categoriesPerSeoDocument[seoDocument.link] = dict(categories)
-            app_logger.debug(u'%s --> %s' % (seoDocument.link, categories))
+            app_logger.debug('%s --> %s' % (seoDocument.link, categories))
             for cat, score in categories:
                 if not cat in result:
                     result[cat] = []
@@ -37,8 +37,8 @@ def _getSeoLibraryMainCategories(seoLibrary, classifierType, documentsLimit, num
         
         for cat, scores in result.items():
             scoreLimit = np.percentile(scores, 25)
-            app_logger.debug(u'Original %s --> %s' % (cat, scores))
-            app_logger.debug(u'Filtered %s --> %s' % (cat, [score for score in scores if score >= scoreLimit]))
+            app_logger.debug('Original %s --> %s' % (cat, scores))
+            app_logger.debug('Filtered %s --> %s' % (cat, [score for score in scores if score >= scoreLimit]))
             result[cat] = [score for score in scores if score >= scoreLimit]
         
         lowerLimit = []
@@ -53,7 +53,7 @@ def _getSeoLibraryMainCategories(seoLibrary, classifierType, documentsLimit, num
         resultFiltered = {cat:score for cat, score in resultFiltered.items() if score*100.00/maxScore > 30}
         
         for cat, score in dict(sorted(resultFiltered.items(), key=operator.itemgetter(1),reverse=True)[0:numCategories]).items():
-            app_logger.info(u'FINAL: %s --> %s' % (cat, score))
+            app_logger.info('FINAL: %s --> %s' % (cat, score))
             
         mainCategories = dict(sorted(resultFiltered.items(), key=operator.itemgetter(1),reverse=True)[0:numCategories])
         

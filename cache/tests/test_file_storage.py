@@ -45,7 +45,7 @@ class FileStorageTest(unittest.TestCase):
         timeout = 5
         version = 1
         compress = True
-        defaultValue = u'Ha habido un error'
+        defaultValue = 'Ha habido un error'
         
         fileStorage = FileStorage(cachePath, {'timeout':timeout, 'compress':compress})
         fileStorage.set(key, value1, timeout, version)
@@ -62,12 +62,12 @@ class FileStorageTest(unittest.TestCase):
         timeout = 10
         version = 1
         compress = False
-        defaultValue = u'Ha habido un error'
+        defaultValue = 'Ha habido un error'
         
         fileStorage = FileStorage(cachePath, {'timeout':timeout, 'compress':compress})
         fileStorage.set(key, value, timeout, version)
         restore = fileStorage.get(key, defaultValue, version)
-        self.assertEqual(value, restore, u'Valor recuperado distinto')
+        self.assertEqual(value, restore, 'Valor recuperado distinto')
 
 
 if __name__ == "__main__":

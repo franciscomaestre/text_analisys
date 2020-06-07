@@ -5,7 +5,6 @@ import os
 from config import settings
 import urllib3
 from urllib3.util.retry import Retry
-from utils.proxy_manager import ProxyManager
 
 class RequestFactory(object):
     '''
@@ -39,14 +38,16 @@ class RequestFactory(object):
     
     @staticmethod
     def getProxyPool():
+        
+        from utils.proxy_manager import ProxyManager
         urllib3.disable_warnings() #@UndefinedVariable
 
         nextProxy = ProxyManager.getNextProxy()
         
         if nextProxy.proxy_basic_auth:
-            proxy_url = u'http://%s@%s:%s' % (nextProxy.proxy_basic_auth, nextProxy.host, nextProxy.port)
+            proxy_url = 'http://%s@%s:%s' % (nextProxy.proxy_basic_auth, nextProxy.host, nextProxy.port)
         else:
-            proxy_url = u'http://%s:%s' % (nextProxy.host, nextProxy.port)
+            proxy_url = 'http://%s:%s' % (nextProxy.host, nextProxy.port)
             
         proxies = {
           'http': proxy_url,

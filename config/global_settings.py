@@ -80,7 +80,7 @@ MANDATORY_TOKEN_MIN_QUANTITY = 3
 
 #------------ Classifier
 
-CLASSIFIER_MODELS_PATH = u'/var/seologies/models'
+CLASSIFIER_MODELS_PATH = './data/models'
 CLASSIFIER_ENABLED = True
 CLASSIFIER_DOCUMENTS_LIMIT = 20
 
@@ -99,12 +99,12 @@ TRAINER_TREE_TYPE = 'products'
 
 SCREENCAPTURE_TEXTAUDIT_WIDTH = 305
 SCREENCAPTURE_TEXTAUDIT_HEIGHT = 165
-SCREENCAPTURE_PATH = u'/var/seologies/snapshot'
-SCREENCAPTURE_DOMAIN = u'http://backend-api.seologies.com/snapshot'
+SCREENCAPTURE_PATH = './data/snapshot'
+SCREENCAPTURE_DOMAIN = 'http://backend-api.seologies.com/snapshot'
 
 #------------Logger
 
-LOG_BASE_PATH = u'/var/log/seologies'
+LOG_BASE_PATH = './data/log/'
 
 #------------API's
 
@@ -149,7 +149,7 @@ POOL_THREAD_MAX_TASK_PER_CHILD = 200  # maxtasksperchild is the number of tasks 
 URL_POOL_SIZE = SEO_TERMS_DOWNLOAD_LIMIT
 POOL_THREAD_SCRAPER_TIMEOUT = 20
 
-STORAGE_CACHE_PATH = './data'
+STORAGE_CACHE_PATH = './data/storage'
 STORAGE_CACHE_TIMEOUT = 90 * 24 * 60 * 60
 STORAGE_CACHE_COMPRESS = True
 

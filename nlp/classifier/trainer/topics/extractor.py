@@ -13,11 +13,11 @@ from experiments.trainer.models.trainer_data import TrainerData
 from multiprocessing.pool import ThreadPool
 import gc
 
-CLASSIFIER_DATA_PATH = u'/trainerData'
+CLASSIFIER_DATA_PATH = '/trainerData'
 
-def getData(topics, initLevel = settings.TRAINER_INIT_LEVEL, language=u'es', country=u'ES'):
+def getData(topics, initLevel = settings.TRAINER_INIT_LEVEL, language='es', country='ES'):
     fileStorage = FileStorageFactory.getFileStorage(CLASSIFIER_DATA_PATH)
-    key = u'trainerData_%s_%s_%s_%s_%s_%s_%s' % (
+    key = 'trainerData_%s_%s_%s_%s_%s_%s_%s' % (
                                               language, 
                                               country, 
                                               initLevel, 
@@ -28,7 +28,7 @@ def getData(topics, initLevel = settings.TRAINER_INIT_LEVEL, language=u'es', cou
                                               )
     result = fileStorage.get(key)
     if not result or not settings.CACHE or not settings.TRAINER_DOWNLOAD_DOCUMENTS  or settings.SCRAPER_RELOAD_CONTENT:
-        print u'NO CACHE --- Generando trainer data... %s' % key
+        print 'NO CACHE --- Generando trainer data... %s' % key
         result = _getData(topics, initLevel, language, country)
         if settings.TRAINER_DOWNLOAD_DOCUMENTS:
             fileStorage.set(key, result)
@@ -48,9 +48,9 @@ def _getData(topics, initLevel, language, country):
     topicTranslated, totalRequests, media2Download = _getRequestsInfo(topics, min2Download=media2Download)
     
     if settings.TRAINER_DOWNLOAD_DOCUMENTS:
-        remainTimer = RemainTimer(totalRequests, u'DOCUMENTOS %s-%s' % (country, language))
+        remainTimer = RemainTimer(totalRequests, 'DOCUMENTOS %s-%s' % (country, language))
     else:    
-        remainTimer = RemainTimer(totalRequests, u'GOOGLE %s-%s' % (country, language))
+        remainTimer = RemainTimer(totalRequests, 'GOOGLE %s-%s' % (country, language))
     
     for topic, content in topicTranslated.items():
 
@@ -63,7 +63,7 @@ def _getData(topics, initLevel, language, country):
         else:
             endInterval = startInterval + lenPart
             
-        print u'Intervalo a Descargar %s - %s' % (startInterval, endInterval)
+        print 'Intervalo a Descargar %s - %s' % (startInterval, endInterval)
         
         gc.collect() 
         downloadPool = ThreadPool(processes=settings.TRAINER_NUM_PROCESSES)
@@ -101,7 +101,7 @@ def _getData(topics, initLevel, language, country):
                 try:
                     #Eliminamos los documentos repetidos
                     if seoDocument.link not in dataInfo[topic]:
-                        documentList.append(u' '.join(seoDocument.getTextTokens(lemmatize=True)))
+                        documentList.append(' '.join(seoDocument.getTextTokens(lemmatize=True)))
                         targetList.append(topic)
                         urlList.append(seoDocument.link)
                     dataInfo[topic].append(seoDocument.link)
@@ -129,8 +129,8 @@ def getTopicList(filename, initLevel=1, minTopicSize=4):
         for row in topicsFile:
             try:
                 row = unicode(row, 'utf-8')
-                row = row.replace(u'\n', u'')
-                parts = row.split(u' > ')
+                row = row.replace('\n', '')
+                parts = row.split(' > ')
                 if len(parts) > initLevel:
                     parts = parts[initLevel:]
                     root = parts[0].strip()
@@ -150,11 +150,11 @@ def getTopicList(filename, initLevel=1, minTopicSize=4):
                                 if p in part:
                                     counter +=1
                             if counter == 0:
-                                topicList[root].add(parts[sIndex] + u' ' + part)
+                                topicList[root].add(parts[sIndex] + ' ' + part)
                         index += 1    
             except Exception as ex:
                 print(ex)
-                print u'Error en %s' % row
+                print 'Error en %s' % row
                 continue
     return {topic:list(content) for topic, content in topicList.items() if len(content) > 3}
 
@@ -170,8 +170,8 @@ def getTopicHierarchy(topic, filename):
         next(topicsFile, None)  # skip the headers 
         for row in topicsFile:
             row = unicode(row, 'utf-8')
-            row = row.replace(u'\n', u'')
-            parts = row.split(u' > ')
+            row = row.replace('\n', '')
+            parts = row.split(' > ')
             finish = False
             for counter, part in enumerate(parts):
                 if rootFound:
@@ -225,7 +225,7 @@ def _getRequestsInfo(topics, min2Download = 0):
 
 def _getGoogleLinks(query, language, country, downloadLimit):
     try:
-        print u'Language: %s Country: %s Query: %s ' % (language, country, query)
+        print 'Language: %s Country: %s Query: %s ' % (language, country, query)
         googleSearch = GoogleScraper(query,
                                language=language,
                                country=country,
@@ -257,5 +257,5 @@ if __name__ == '__main__':
     sys.path.insert(0, os.path.join(PROJECT_ROOT, os.getcwd()+ "./../"))
     os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')    
     
-    filename = os.getcwd() + './../' + u'data/products/taxonomy.es-ES.txt'
-    print getTopicHierarchy(u'Transporte de bebés', filename)
+    filename = os.getcwd() + './../' + 'data/products/taxonomy.es-ES.txt'
+    print getTopicHierarchy('Transporte de bebés', filename)

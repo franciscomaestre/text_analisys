@@ -9,7 +9,7 @@ class ClassifierTest(unittest.TestCase):
 
     def testWarmUp(self):
         ClassifierFactory.warmUp()
-        self.assertTrue(u'es-ES' in ClassifierFactory.MODELS, u'No se ha cargado el modelo es-ES')
+        self.assertTrue('es-ES' in ClassifierFactory.MODELS, 'No se ha cargado el modelo es-ES')
 
     def testSpanishClassifier(self):
         pass

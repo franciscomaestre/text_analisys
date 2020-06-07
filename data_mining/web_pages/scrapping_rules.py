@@ -42,7 +42,7 @@ MIN_WORDS = 4
 SPLITTER_TAG = 'WWXN0B0KK4KXWW'.lower()
 SPLITTER = ' %s ' % SPLITTER_TAG
 
-POSITIVE_TAGS = [u'main', u'h1', u'h2', u'h3' ]
+POSITIVE_TAGS = ['main', 'h1', 'h2', 'h3' ]
 
 NEGATIVE_REGEX = re.compile(".*comment.*|.*meta.*|.*footer.*|.*foot.*|.*cloud.*|.*head.*|.*date.*|.*navbar.*|.*related-posts.*|.*post-related.*|.*cookie.*|.*menu.*|.*hidde.*")
 
@@ -60,31 +60,31 @@ width: 0; height: 0;
 
 TAGS_TO_REMOVE = [
                   # General tags Elements
-                  u'script', u'links', u'style', u'meta', u'noscript', u'head', u'footer', u'nav', u'style', u'details', u'aside', u'hr', u'time', #u'br',
+                  'script', 'links', 'style', 'meta', 'noscript', 'head', 'footer', 'nav', 'style', 'details', 'aside', 'hr', 'time', #'br',
                   # Form tags Elements
-                  u'button', u'select', u'label', u'fieldset', u'datalist', u'input'
+                  'button', 'select', 'label', 'fieldset', 'datalist', 'input'
                   # Frame tags Elements
-                  u'iframe',
+                  'iframe',
                   # Audio/Video tags Elements
-                  u'audio', u'video',
+                  'audio', 'video',
                   # List tags Elements
-                  u'menu',
+                  'men',
                   # Programming
-                  u'embed', u'object']
+                  'embed', 'object']
 
 TAGS_TO_REPLACE = {
                    # Tags to Convert to P
-                   u'cite': u'p',
-                   u'code': u'p',
-                   u'pre': u'p',
-                   u'span': u'p',
-                   u'textarea':u'div'
+                   'cite': 'p',
+                   'code': 'p',
+                   'pre': 'p',
+                   'span': 'p',
+                   'textarea':'div'
                    }
 
-TAGS_TO_ENCAPSULATE_CHILDREN = [u'div', u'main', u'article', u'section', u'header']
+TAGS_TO_ENCAPSULATE_CHILDREN = ['div', 'main', 'article', 'section', 'header']
 
-TAGS_TO_GET_CONTENT = [u'p', u'span', u'h1', u'h2', u'h3', u'h4', u'h5', u'h6']
+TAGS_TO_GET_CONTENT = ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
-TAGS_TO_GET_CONTENT_SPLITTED = [u'table', u'col', u'ul', u'ol', u'dl', u'abbr']
+TAGS_TO_GET_CONTENT_SPLITTED = ['table', 'col', 'ul', 'ol', 'dl', 'abbr']
 
 

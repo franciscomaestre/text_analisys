@@ -17,14 +17,14 @@ class GoogleScraperRelated(object):
     
     # https://www.google.com/complete/search?sclient=psy-ab&q=r&oq=&gs_l=&pbx=1&bav=on.2,or.r_cp.&bvm=bv.124272578,d.d24&fp=e8390a58f788cfaa&biw=1920&bih=470&pf=p&gs_rn=64&gs_ri=psy-ab&tok=vjGv10Jg7D8H4Cwy9lW1uA&pq=ff&cp=1&gs_id=3&xhr=t&tch=1&ech=1&psi=hZNeV9DONIHoUquznYgL.1465815943354.1
     
-    CACHE_PATH = u'/googleRelated'
-    HOST_TEMPLATE = u'https://www.%s/complete/search'  # direct scrapping
+    CACHE_PATH = '/googleRelated'
+    HOST_TEMPLATE = 'https://www.%s/complete/search'  # direct scrapping
     
     # API WARNING: Aug-2015 deprecation :)
     # hay que poner el lenguage en la query: hl='es'
-    HOST_TEMPLATE = u'http://suggestqueries.google.com/complete/search' # ?client=firefox&q=YOURQUERY   --> 
+    HOST_TEMPLATE = 'http://suggestqueries.google.com/complete/search' # ?client=firefox&q=YOURQUERY   --> 
     
-    def __init__(self, query, language=u'es', country=u'ES', googleHost=u'google.es'):
+    def __init__(self, query, language='es', country='ES', googleHost='google.es'):
         # change str to unicode
         #try:
         #    self.query = query.decode('utf8')  # query to lookup
@@ -34,14 +34,14 @@ class GoogleScraperRelated(object):
         
         self.language = language
         self.country = country
-        if not u'http' in googleHost:
+        if not 'http' in googleHost:
             self.googleHost = GoogleScraperRelated.HOST_TEMPLATE # % googleHost
         else:
             self.googleHost = googleHost
         
     def search(self):
         fileStorage = FileStorageFactory.getFileStorage(GoogleScraperRelated.CACHE_PATH)
-        key = u'%s.%s.%s' % (self.query, self.language, self.country)
+        key = '%s.%s.%s' % (self.query, self.language, self.country)
         related = fileStorage.get(key)
         if not related:
             related = []
@@ -86,7 +86,7 @@ class GoogleScraperRelated(object):
             app_logger.error(u"_requestError %s" % ex)
             raise ex
          
-        # [u'repelente', [[u'repelente<b> mosquitos</b>', 0, [131]], [u'repelente<b> para gatos</b>', 0, [131]], [u'repelente<b> para perros</b>', 0], [u'repelente', 0]], ... 
+        # ['repelente', [['repelente<b> mosquitos</b>', 0, [131]], ['repelente<b> para gatos</b>', 0, [131]], ['repelente<b> para perros</b>', 0], ['repelente', 0]], ... 
         results = [] 
 
         data = json.loads(r.data) 
@@ -100,7 +100,7 @@ class GoogleScraperRelated(object):
         if not data and not results:
             ProxyManager.invalidateProxy()
             if retries > 0:
-                print u'Reintentando(%s)... %s' % (retries, self.query)
+                print 'Reintentando(%s)... %s' % (retries, self.query)
                 return self._search(retries-1)
         
         return results

@@ -11,7 +11,7 @@ class GoogleSearchTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         super(GoogleSearchTest, cls).setUpClass()
-        cls.query = u'Fitness y musculacion Maquinas de pilates'
+        cls.query = 'Fitness y musculacion Maquinas de pilates'
         cls.language = 'es'
         cls.country = 'ES'
         cls.googleHost = 'google.es'

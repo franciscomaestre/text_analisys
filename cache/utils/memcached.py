@@ -190,8 +190,8 @@ class MemcachedCache(BaseMemcachedCache):
         # Python 2 memcache requires the key to be a byte string.
         try:
             if rawKey:
-                return u'%s_%s' % (self.space, key)
-            key = super(MemcachedCache, self).make_key(u'%s_%s' % (self.space, key), version=version)
+                return '%s_%s' % (self.space, key)
+            key = super(MemcachedCache, self).make_key('%s_%s' % (self.space, key), version=version)
             return hashlib.md5(force_bytes(key)).hexdigest()
         except Exception as ex:
             print(ex)

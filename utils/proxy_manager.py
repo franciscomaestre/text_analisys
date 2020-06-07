@@ -173,8 +173,8 @@ class ProxyInfo(object):
 
 # -------------------------------------------------------------------------------
 # Global manager
-ProxyManager = CompositeProxyManager()
-ProxyManager.add(ProxyBuyProxies())       # buyProxies
+#ProxyManager = CompositeProxyManager()
+#ProxyManager.add(ProxyBuyProxies())       # buyProxies
 #ProxyManager.add(ProxyManagerFineProxy())  # fineProxy. rusos --> Quemados
 
 

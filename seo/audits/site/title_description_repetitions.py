@@ -59,7 +59,7 @@ if __name__ == '__main__':
     domain = u'%s.%s' % (extracted.subdomain, extracted.domain) if extracted.subdomain else extracted.domain
     query = u'site:{}.{}'.format(domain, extracted.suffix)
     
-    print query
+    print(query)
     
     seoLibrary = SeoDocumentDownloader(
                                        query=query,
@@ -71,4 +71,4 @@ if __name__ == '__main__':
                                        ).getSeoLibrary()    
     
 
-    print json.dumps(getRepeatedTitlesAndMetaDescriptions(seoLibrary))
+    print(json.dumps(getRepeatedTitlesAndMetaDescriptions(seoLibrary)))

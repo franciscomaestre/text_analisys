@@ -59,7 +59,7 @@ class ProofTermsTokensRating(object):
         results = []
         
         if DISPLAY:
-            print 'Ranked vs WebData'
+            print('Ranked vs WebData')
         proofTermsScore = self._stadistic(self.rankedDataTokens, self.textLemmas)
         for dataTokens in self.referencedLemmas:
             if DISPLAY:

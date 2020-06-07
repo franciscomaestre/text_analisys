@@ -132,18 +132,18 @@ if __name__ == "__main__":
                  u'Storage of cookies is voluntary; a client does not have to accept or store cookies.']
     for sentence in sentences:
         badWordsList = laguageToolChecker.getBadWords(sentence)
-        print badWordsList
+        print(badWordsList)
     
     tool = language_check.LanguageTool('en-US')
-    print laguageToolChecker.getBadWords(u'A sentence with a error in the Hitchhiker’s Guide tot he Galaxy.') 
+    print(laguageToolChecker.getBadWords(u'A sentence with a error in the Hitchhiker’s Guide tot he Galaxy.') )
     
     tool = language_check.LanguageTool('pt-PT')
-    print laguageToolChecker.getBadWords(u'Cola o teu próprio texto aqui... ou berifica este texto, afim de ver alguns dos dos problemas que o LanguageTool consegue detectar. Isto tal vez permita corigir os teus erros à última da hora.') 
+    print(laguageToolChecker.getBadWords(u'Cola o teu próprio texto aqui... ou berifica este texto, afim de ver alguns dos dos problemas que o LanguageTool consegue detectar. Isto tal vez permita corigir os teus erros à última da hora.') )
 
     tool = language_check.LanguageTool('fr-FR')
-    print laguageToolChecker.getBadWords(u'Copiez votre texte ici ou vérifiez cet exemple contenant plusieurs erreur que LanguageTool doit doit pouvoir detecter.') 
+    print(laguageToolChecker.getBadWords(u'Copiez votre texte ici ou vérifiez cet exemple contenant plusieurs erreur que LanguageTool doit doit pouvoir detecter.') )
 
     tool = language_check.LanguageTool('it-IT')
-    print laguageToolChecker.getBadWords(u'Inserite qui lo vostro testo... oppure controlate direttamente questo ed avrete un assaggio di quali errori possono essere identificati con LanguageTool.') 
+    print(laguageToolChecker.getBadWords(u'Inserite qui lo vostro testo... oppure controlate direttamente questo ed avrete un assaggio di quali errori possono essere identificati con LanguageTool.') )
     
         

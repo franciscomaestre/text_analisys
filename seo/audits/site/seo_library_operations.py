@@ -45,7 +45,7 @@ def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
     domain = u'%s.%s' % (domain, extracted.suffix)
 
     # buscamos si hay un path después del dominio
-    import urlparse
+    from urllib.parse import urlparse
     urlpath = [u for u in  urlparse.urlsplit(startUrl).path.split('/') if u and u!=domain ]
     path=[]
     if urlpath:
@@ -58,7 +58,7 @@ def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
     else:
         query = u'site:{}'.format(domain,)
     
-    print query
+    print(query)
     
     seoLibrary = SeoDocumentDownloader(
                                        query=query,
@@ -70,7 +70,7 @@ def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
                                        useProxy=useProxy
                                        ).getSeoLibrary()    
     
-    print u'Número de documentos originales: %s' % (len(seoLibrary.seoDocuments))
+    print(u'Número de documentos originales: %s' % (len(seoLibrary.seoDocuments)))
 
     if len(seoLibrary.seoDocuments) < 20:
         raise Exception(u'Error: Not enough documents to get stats')
@@ -103,7 +103,7 @@ def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
     
     seoLibrary.seoDocuments = [seoDocument for seoDocument in seoLibrary.seoDocuments if seoDocument.link not in links2Remove]
     
-    print u'Número de documentos tras Filtrado de Paginaciones: %s' % (len(seoLibrary.seoDocuments))
+    print(u'Número de documentos tras Filtrado de Paginaciones: %s' % (len(seoLibrary.seoDocuments)))
     
     '''
     Descartamos aquellos documentos que no tengan una longitud mínima
@@ -115,7 +115,7 @@ def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
     lowerLimit = max(percentilLengthText, settings.SITE_AUDIT_MIN_DOCUMENT_LENGTH)
     seoLibrary.seoDocuments = [seoDocument for seoDocument in seoLibrary.seoDocuments if seoDocument.getLenRawTokens() > lowerLimit]
     
-    print u'Número de documentos tras PRIMER filtrado por Longitud: %s' % (len(seoLibrary.seoDocuments))
+    print(u'Número de documentos tras PRIMER filtrado por Longitud: %s' % (len(seoLibrary.seoDocuments)))
     
     allSentences = {}
     
@@ -142,7 +142,7 @@ def _getSeoLibraryFiltered(startUrl, language, country, useProxy=False):
     lowerLimit = np.percentile(lengths, 25)
     seoLibrary.seoDocuments = [seoDocument for seoDocument in seoLibrary.seoDocuments if seoDocument.getLenRawTokens() > lowerLimit]
     
-    print u'Número de documentos tras SEGUNDO filtrado por Longitud: %s' % (len(seoLibrary.seoDocuments))
+    print(u'Número de documentos tras SEGUNDO filtrado por Longitud: %s' % (len(seoLibrary.seoDocuments)))
 
     return seoLibrary
 

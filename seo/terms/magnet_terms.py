@@ -5,7 +5,7 @@ import nltk
 from nltk.probability import FreqDist
 from config import settings
 from seo.containers.seo_document import _getMandatoryBlockTokens
-from urlparse import urlparse
+from urllib.parse import urlparse
 import numpy as np
 
 class MagnetTerms(object):
@@ -50,7 +50,7 @@ class MagnetTerms(object):
                             trigrams.extend(self._getTrigrams(domain, tokenList))
                             bigrams.extend(self._getBigrams(domain, tokenList))
                         except Exception as ex:
-                            print u'ERROR - %s - %s' % (seoDocument.link, ex)
+                            print(u'ERROR - %s - %s' % (seoDocument.link, ex))
                     
                     if self.uniqueDomains:
                         trigrams = self._filterByDomain(trigrams)

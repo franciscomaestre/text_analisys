@@ -133,10 +133,10 @@ class NgramTerms(object):
         
         if display:
             app_logger.info(u"{space} Wdf-Idf {ngrade} {space}".format(ngrade=ngrade, space='-' * 30))
-            print u"{space} Wdf-Idf {ngrade} {space}".format(ngrade=ngrade, space='-' * 30)
+            print(u"{space} Wdf-Idf {ngrade} {space}".format(ngrade=ngrade, space='-' * 30))
             for token, wdfidf in wdfIdfTokens:
                 app_logger.debug(u'%s --> %s' % (token, wdfidf))
-            print '-' * 80
+            print('-' * 80)
             
         return wdfIdfTokens
     

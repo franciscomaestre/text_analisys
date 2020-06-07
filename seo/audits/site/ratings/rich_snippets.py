@@ -67,5 +67,5 @@ if __name__ == '__main__':
                                                
     rating = RichSnippetsRating(seoLibrary)
     
-    print rating.getRating().getInfo()                                        
+    print(rating.getRating().getInfo())                                       
     

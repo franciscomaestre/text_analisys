@@ -14,7 +14,7 @@ from nlp.lda.classifier import findLdaTopicNames
 class NumPyArangeEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.ndarray):
-            print 'list'
+            print('list')
             return obj.tolist() # or map(int, obj)
         elif isinstance(obj, (np.int64, np.int_, np.int32 )):  # windows. https://bugs.python.org/issue24313  64-bit Windows is LLP64.
             return long(obj)
@@ -22,7 +22,7 @@ class NumPyArangeEncoder(json.JSONEncoder):
             return obj.real
         elif isinstance(obj, (np.float64, np.float_, np.float32)):
             return "%.2f" % obj
-        print type(obj)  
+        print(type(obj))
         return json.JSONEncoder.default(self, obj)
 
 # General HTML template.  This should work correctly whether or not requirejs

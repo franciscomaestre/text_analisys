@@ -15,7 +15,7 @@ def _addRating(ratingGetter, ratings):
             ratings[rating.title] = rating.getInfo()
             
     except Exception as ex:
-        print u"%s %s" % (ratingGetter.__class__ ,ex)
+        print(u"%s %s" % (ratingGetter.__class__ ,ex))
         app_logger.error(u"%s %s" % (ratingGetter.__class__ ,ex))
 
 

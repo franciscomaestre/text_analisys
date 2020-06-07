@@ -5,7 +5,7 @@ import sys
 import os
 import re
 import json
-import urllib2
+import urllib3
 
 """
 Download apps.json from Wappalyzer JSON (https://github.com/ElbertF/Wappalyzer)
@@ -39,17 +39,17 @@ def builtwith(url, headers=None, html=None, user_agent='builtwith'):
     # download content
     if None in (headers, html):
         try:
-            request = urllib2.Request(url, None, {'User-Agent': user_agent})
+            request = urllib3.Request(url, None, {'User-Agent': user_agent})
             if html:
                 # already have HTML so just need to make HEAD request for headers
                 request.get_method = lambda : 'HEAD'
-            response = urllib2.urlopen(request)
+            response = urllib3.urlopen(request)
             if headers is None:
                 headers = response.headers
             if html is None:
                 html = response.read()
         except Exception as e:
-            print 'Error BuildWith:', e
+            print('Error BuildWith:', e)
             request = None
 
     # check headers
@@ -142,4 +142,4 @@ if __name__ == '__main__':
     for url in urls:
         results = builtwith(url)
         for result in sorted(results.items()):
-            print '%s: %s' % result
+            print('%s: %s' % result)

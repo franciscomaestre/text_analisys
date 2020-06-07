@@ -431,7 +431,7 @@ if __name__ == '__main__':
 
     for url in urls[-1:]:
         print(80*'-')
-        print url
+        print(url)
         rawHtml = download(url)
         try:
             bestNodes = scrapingFilter.getFilteredText(rawHtml, returnText=False)

@@ -53,7 +53,7 @@ if __name__ == '__main__':
     
     language = u'es'
     country = u'ES'
-    startUrl = u'http://www.luciasecasa.com'
+    startUrl = u'http://www.dinersclub.com.ec'
     
     extracted = tldextract.extract(startUrl)
     domain = u'%s.%s' % (extracted.subdomain, extracted.domain) if extracted.subdomain else extracted.domain

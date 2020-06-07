@@ -138,7 +138,7 @@ data = load_apps()
 
 
 if __name__ == '__main__':
-    urls = ['http://luciasecasa.com', ]
+    urls = ['http://dinersclub.com.ec', ]
     for url in urls:
         results = builtwith(url)
         for result in sorted(results.items()):

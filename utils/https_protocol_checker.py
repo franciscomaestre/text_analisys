@@ -46,7 +46,7 @@ class HttpsProtocolChecker():
 
 if __name__ == '__main__':
     
-    urls = ['https://www.luciasecasa.com']                 #Is not Https                     | Result: Not Https
+    urls = ['https://www.dinersclub.com.ec']                 #Is not Https                     | Result: Not Https
     urls.append('https://www.seologies.com/')              #Correct Https                    | Result: Https
     urls.append('https://revoked.grc.com/')                #Revoked certificate              | Result: Https
     urls.append('https://tv.eurosport.com/')               #The domain name does not match   | Result: Not Https

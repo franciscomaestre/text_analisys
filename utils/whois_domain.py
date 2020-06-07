@@ -25,7 +25,7 @@ class WhoisDomain():
     
 if __name__ == '__main__':
     
-    whoisD = WhoisDomain('www.luciasecasa.com')
+    whoisD = WhoisDomain('www.dinersclub.com.ec')
     print(whoisD.getCreationDate())
     print(whoisD.getExpirationDate())
     print(whoisD.getDomainAge())

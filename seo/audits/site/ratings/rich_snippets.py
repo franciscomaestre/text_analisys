@@ -52,7 +52,7 @@ class RichSnippetsRating(object):
 
 if __name__ == '__main__':
     
-    query = 'site:luciasecasa.com/labodadelucia'
+    query = 'site:dinersclub.com.ec'
     language = 'es'
     country = 'ES'
 

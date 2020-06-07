@@ -22,11 +22,11 @@ def downloadContent(language, country):
 
     levels = [1]
     if settings.DEBUG and platform.node() in settings.LOCAL_CPUS:
-        print 'Local settings --- %s' % platform.node()
+        print('Local settings --- %s' % platform.node())
         levels = [1]
             
     for level in levels:
-        print 'Comenzamos el nivel %s' % level
+        print('Comenzamos el nivel %s' % level)
         testModels(level, language, country)
 
 def testModels(initLevel= 1, language='es', country='ES'):
@@ -48,7 +48,7 @@ def testModels(initLevel= 1, language='es', country='ES'):
         
         for cls in clsList:
             try:
-                print 'INICIAMOS PRUEBAS MANUALES NIVEL %s para %s' % (initLevel, str(cls).split('(')[0])
+                print('INICIAMOS PRUEBAS MANUALES NIVEL %s para %s' % (initLevel, str(cls).split('(')[0]))
                 model = getModelTrained(cls, trainerData, reloadModel=True)
                 testTrainModel(model, trainerData)
                 manualTest(model, trainerData.language, trainerData.country)
@@ -56,14 +56,14 @@ def testModels(initLevel= 1, language='es', country='ES'):
                 print(ex)  
     else:
         trainerData = None
-        print 'No Trainer Data to Train'
+        print('No Trainer Data to Train')
         
     gc.collect()
 
 def manualTest(model, language, country):
 
     links = [
-             'http://www.luciasecasa.com/',
+             'http://www.dinersclub.com.ec/',
              'https://es.wikipedia.org/wiki/Metralleta',
              'http://www.zooplus.es/shop/tienda_perros/correas_collares_perros',
              'https://cookpad.com/es/buscar/hummus',
@@ -90,15 +90,15 @@ def predictLink(model, link, language, country):
     dataDocument = googleScraper.getDataDocument()
     seoDocument = SeoDocument(link, dataDocument, 1, language, country)
     document = ' '.join(seoDocument.getTextTokens(lemmatize=True))
-    print '%s --> %s' % (model.predict([document])[0], link)
+    print('%s --> %s' % (model.predict([document])[0], link))
     try:
         probability = model.predict_proba([document])[0]
         results = []
         for i in range(0, len(probability)):
             results.append((model.steps[-1][-1].classes_[i], int(probability[i] * 100)))
-        print link
+        print(link)
         for topic, prob in sorted(results, key=lambda tup: tup[1], reverse=True)[0:2]:
-            print '-------    %s -->\t%s' % (topic, prob)
+            print('-------    %s -->\t%s' % (topic, prob))
     except Exception as ex:
         print(ex)
     

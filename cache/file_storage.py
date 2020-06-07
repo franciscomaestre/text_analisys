@@ -7,7 +7,7 @@ import zlib
 import hashlib
 
 try:
-    from cache.utils.six.moves import cPickle as pickle
+    from .utils.six import cPickle as pickle
 except ImportError:
     import pickle
 

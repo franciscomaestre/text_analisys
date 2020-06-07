@@ -392,25 +392,7 @@ if __name__ == '__main__':
     os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
 
     urls = ['http://www.zooplus.es/shop/tienda_perros/pienso_perros/royal_canin_club_selection/royal_canin_special_club/56533',
-            'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html',
-            
-            'http://www.elmundo.es',
-            
-            'http://www.animalclan.com/es/15295-royal-canin-gatos-norweian-forest.html?%20search_query=norw&results=1',
-            'https://3acd-descargar.phpnuke.org/es/c09262/microsoft-office-2010',
-            
-            'https://serps.com/library/',
-           
-            'http://www.publico.es/sociedad/liberado-madrid-joven-al-padre.html',
-            'http://www.publico.es/',
-            'http://www.elmundo.es/',
-            'http://www.zooplus.es/shop/tienda_perros/pienso_perros/taste_of_the_wild/taste_of_the_wild_adult/409340',
-            'http://www.decathlon.es/zapatillas-de-running-hombre-kalenji-ekiden-one-gris--id_8351755.html',
-
-            'http://www.luciasecasa.com/',
-            'http://www.luciasecasa.com/boda-de-la-semana/la-boda-la-semana-marta-jaime/',
-            
-            'http://www.animalclan.com/es/6310-collar-scalibor-oferta.html',            
+            'http://www.elmundo.es',          
             ]
     
     def download(url):

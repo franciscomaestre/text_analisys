@@ -10,7 +10,6 @@ from utils.logger import LoggerFactory
 import time
 import random
 from config import settings
-from utils.proxy_manager import ProxyManager
 import urllib
 from data_mining.web_pages.scraper import UserAgent
 
@@ -97,7 +96,7 @@ class GoogleScraper(object):
         payload['pws'] = 0
         payload['gws_rd'] = 'cr'
         
-        pool = Urllib3PoolFactory.getProxyPool()
+        pool = Urllib3PoolFactory.getPool()
         
         # Getting the response in an Object r
         
@@ -137,14 +136,15 @@ class GoogleScraper(object):
             try:
                 search_query = "<b>%s</b>"%query
                 if not search_query in r.data:
-                    ProxyManager.invalidateProxy()
+                    #from utils.proxy_manager import ProxyManager
+                    #ProxyManager.invalidateProxy()
                     if retries > 0:
-                        print 'Reintentando... %s' % self.query
+                        print('Reintentando... %s' % self.query)
                         time.sleep(random.uniform(0.0, 0.2))
                         return self._search(start, retries-1, exactSearch)
             except Exception as ex:
                 print(ex)
-                print 'Google Scrapper Error'
+                print('Google Scrapper Error')
         
         return results
     

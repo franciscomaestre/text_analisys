@@ -8,14 +8,6 @@ Created on 28 de jul. de 2016
 
 Quitar Regional. Son todoslos datos por paise
 
-Top/World/Español/Regional/América/Colombia/Departamentos/Vichada
-
-+ Top/World/Español/
-- Top/World/Español/Regional/
-
-+ Top/World/Español/Artes/
-- Top/World/Español/Artes/Regional/
-
 narrow2 mejor que narrow1 mejor que narrow 
 
 '''
@@ -48,21 +40,21 @@ if __name__ == '__main__':
                         continue
                     
                     
-                    print elem.attrib['{http://www.w3.org/TR/RDF/}id'] 
+                    print(elem.attrib['{http://www.w3.org/TR/RDF/}id'])
                     i+=1
                     for child in elem.getchildren():
                         
                         if child.tag == "{http://purl.org/dc/elements/1.0/}Title":
-                            print child.text
+                            print(child.text)
                             #addToMongoDB(url)
                         elif child.tag == "{http://purl.org/dc/elements/1.0/}Description":
-                            print child.text
+                            print(child.text)
                         elif child.tag == "{http://dmoz.org/rdf/}catid":
-                            print child.text
+                            print(child.text)
                         elif child.tag == "{http://dmoz.org/rdf/}narrow" or\
                              child.tag == "{http://dmoz.org/rdf/}narrow1" or\
                              child.tag == "{http://dmoz.org/rdf/}narrow2":
-                            print 'child %s' % child.attrib['{http://www.w3.org/TR/RDF/}resource'] 
+                            print('child %s' % child.attrib['{http://www.w3.org/TR/RDF/}resource'])
  
                     #clear the elements, without this, your RAM will saturate, with this only 30Mb of ram is used
                     elem.clear()

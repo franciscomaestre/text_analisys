@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import urlparse
+from urllib.parse import urlparse
 from collections import OrderedDict
 
 from seo.audits.site.google_ranking.domain_google_ranking import DomainGoogleRankingInfo,\

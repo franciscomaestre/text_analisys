@@ -8,7 +8,7 @@ from sklearn.grid_search import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.cross_validation import train_test_split
 from sklearn.metrics import classification_report
-import cPickle
+import pickle
 
 from config import settings
 
@@ -19,19 +19,19 @@ def getModelTrained(clf, trainerData, reloadModel=True):
     model = None
     if not reloadModel and settings.CACHE:
         try:
-            model = cPickle.load(open(filename))
+            model = pickle.load(open(filename))
         except:
             pass
     if not model:
         model = _trainModel(clf, trainerData)
         with open(filename, 'wb') as fout:
-            cPickle.dump(model, fout, protocol=cPickle.HIGHEST_PROTOCOL)
+            pickle.dump(model, fout, protocol=pickle.HIGHEST_PROTOCOL)
             
     return model    
 
 def _trainModel(clf, trainerData):
 
-    print 'Entrenando ---- %s model Percentage %s' % (str(clf).split('(')[0], settings.TRAINER_DOWNLOAD_PERCENTAGE)
+    print('Entrenando ---- %s model Percentage %s' % (str(clf).split('(')[0], settings.TRAINER_DOWNLOAD_PERCENTAGE))
     
     trainedDocuments, testDocuments, trainedTargets, testTargets = train_test_split(trainerData.documentList, trainerData.targetList,  test_size=0.20, random_state=33)
     

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import cPickle
+import pickle
 from config import settings
 from nlp.classifier.classifier import Classifier
 import time
@@ -25,7 +25,7 @@ class ClassifierFactory(object):
         filename = settings.CLASSIFIER_MODELS_PATH+'/model_%s_%s_%s.pkl' % (language, country, classifierType)
         model = None
         try:
-            model = cPickle.load(open(filename, 'rb'))
+            model = pickle.load(open(filename, 'rb'))
             '''
             with open(filename, 'wb') as fout:
                 cPickle.dump(model, fout, protocol=cPickle.HIGHEST_PROTOCOL)
@@ -46,7 +46,7 @@ class ClassifierFactory(object):
                 try:
                     init = time.time()
                     ClassifierFactory.getModel(language, country, classifierType)
-                    print 'Classifier_%s_%s_%s ---> %s segundos' % (language, country, classifierType, time.time()-init)
+                    print('Classifier_%s_%s_%s ---> %s segundos' % (language, country, classifierType, time.time()-init))
                 except Exception as ex:
                     print(ex)
     

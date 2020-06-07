@@ -1,13 +1,18 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
+import os
+import sys
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "../"))
+os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
 
 import urllib
-import urlparse
+from urllib.parse import urlparse
 
-from core.data_mining.search_engines.google.google_scraper import GoogleScraper
-from core.data_mining.search_engines.google import getGoogleHost
-from core.seo.audits.site.google_ranking import getDomainFromUrl
-from core.data_mining.web_pages.scraper import Scraper
+
+from data_mining.search_engines.google.google_scraper import GoogleScraper
+from data_mining.search_engines.google import getGoogleHost
+from seo.audits.site.google_ranking import getDomainFromUrl
+from data_mining.web_pages.scraper import Scraper
 from bs4 import BeautifulSoup
 
 
@@ -75,7 +80,7 @@ if __name__ == '__main__':
                                 results[origin] = []
                             results[origin].append(url.replace('&quot;',''))
             
-            except Exception, ex:
+            except Exception as ex:
                 continue
     
     for origin, links in results.items():

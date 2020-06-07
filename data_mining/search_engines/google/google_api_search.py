@@ -46,9 +46,6 @@ from data_mining.search_engines.google.base_search import BaseSearchEngine
 app_download_logger = LoggerFactory.getInstance('downloader')
 app_error_logger = LoggerFactory.getInstance('app')
 
-# scraper_performance
-# #GOOGLE_SEARCH_ENGINE_ID = '002362144926838910221:xepc2glp4sq'
-
 class GoogleSearchEngine(BaseSearchEngine):
     
     URL_TEMPLATE = 'https://www.googleapis.com/customsearch/v1?key=%s&cx=%s'

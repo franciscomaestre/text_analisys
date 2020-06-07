@@ -64,21 +64,6 @@ def manualTest(model, language, country):
 
     links = [
              'http://www.dinersclub.com.ec/',
-             'https://es.wikipedia.org/wiki/Metralleta',
-             'http://www.zooplus.es/shop/tienda_perros/correas_collares_perros',
-             'https://cookpad.com/es/buscar/hummus',
-             'http://www.imaginarium.es/juguetes-estimulacion-temprana-para-bebes-339.htm',
-             'http://www.enfemenino.com/sexualidad/juegos-eroticos-s483241.html',
-             'http://elpais.com',
-             'http://www.timeout.es/madrid/es/locales-de-noche/los-mejores-clubes-de-madrid',
-             'http://www.elconfidencial.com/alma-corazon-vida/2016-05-10/los-seis-trucos-para-acelerar-tu-metabolismo-y-conseguir-adelgazar-mas-efectivos_1196946/',
-             'http://www.automovilesalhambra.es/coches-segunda-mano/?gclid=Cj0KEQjw09C5BRDy972s6q2y4egBEiQA5_guvz95XTjeHMB7PaXZbaMEmaQTiVwYMMs9wFP6sBMaThAaAm7d8P8HAQ',
-             'http://www.coches.com/coches-segunda-mano/',
-             'http://www.infonieve.es/',
-             'http://www.kitesurfmadrid.com/',
-             'http://www.zooplus.es/shop/tienda_gatos',
-             'http://www.desenfunda.com/articulos-para-la-caza/accesorios-de-caza/fundas-de-armas-de-caza.html',
-             'http://www.ikea.com/es/es/catalog/categories/departments/living_room/10398/'
              ]
     
     

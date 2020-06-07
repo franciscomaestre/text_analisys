@@ -1,9 +1,15 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+'''
+import os
+import sys
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "../"))
+os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
+'''
+
 from scrapy.crawler import CrawlerProcess
 from scrapy.spiders.crawl import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
-from core.concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from concurrence.urllib3_pool_factory import Urllib3PoolFactory
 
 class ScrapyCrawler(CrawlSpider):
     name = 'Seologies Crawler'

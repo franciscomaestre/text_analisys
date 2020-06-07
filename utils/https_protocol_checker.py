@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import requests, ssl
-from urlparse import urlparse
-from urllib2 import URLError
+from urllib.parse import urlparse
+from urllib.error import URLError
 
 class HttpsProtocolResponses(object):
     
@@ -57,4 +57,4 @@ if __name__ == '__main__':
     
     for url in urls:
         httpCheck = HttpsProtocolChecker(url)
-        print u'%s --> %s' % (url, httpCheck.isHttpsActive())
+        print(u'%s --> %s' % (url, httpCheck.isHttpsActive()))

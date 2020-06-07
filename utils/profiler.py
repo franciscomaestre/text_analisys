@@ -16,7 +16,7 @@ class Profiler(object):
         s = StringIO.StringIO()
         ps = pstats.Stats(self.profiler, stream=s).sort_stats(self.sortby)
         ps.print_stats(max_stats)
-        print s.getvalue()
+        print(s.getvalue())
         print(u'--------- Disabled Profiler %s ---------------' % self.text)
         
 

@@ -22,6 +22,14 @@ Created on 7 de jul. de 2016
 10. Nos quedamos con el mejor candidato y los demas si tienen un mínimo de datos(nodes_length/3) y puntos(contentScore/4)
 
 '''
+'''
+import os
+import sys
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "../../../"))
+os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
+'''
+
 import re
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
@@ -433,46 +441,11 @@ class Readability(ScraperBase):
         return node
 
 if __name__ == '__main__':
-    import os
-    import sys
-    PROJECT_ROOT = os.path.dirname(__file__)
-    sys.path.insert(0, os.path.join(PROJECT_ROOT, "../"))
-    os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
 
-    urls = ['http://www.zooplus.es/shop/tienda_perros/pienso_perros/royal_canin_club_selection/royal_canin_special_club/56533',
-            'http://www.animalclan.com/es/16739-scalibor-65cm-royal-canin-club-adult-special-performance.html',
-            'http://www.elmundo.es',
-            'http://www.animalclan.com/es/15295-royal-canin-gatos-norweian-forest.html?%20search_query=norw&results=1',
-            'https://serps.com/library/',
-            'http://www.publico.es/sociedad/liberado-madrid-joven-al-padre.html',
+
+    urls = [
             'http://www.publico.es/',
             'http://www.elmundo.es/',
-            'http://www.zooplus.es/shop/tienda_perros/pienso_perros/taste_of_the_wild/taste_of_the_wild_adult/409340',
-            'http://www.decathlon.es/zapatillas-de-running-hombre-kalenji-ekiden-one-gris--id_8351755.html',
-            'http://www.luciasecasa.com/',
-            'http://www.luciasecasa.com/boda-de-la-semana/la-boda-la-semana-marta-jaime/',
-            'http://www.animalclan.com/es/6310-collar-scalibor-oferta.html',
-            'http://www.scubadocadiz.es/',            
-            'http://www.oceanoadictos.com/',
-            'https://www.yumping.com/buceo/cadiz',
-            'https://www.yumping.com/buceo/naturexplorer-buceo--e593',
-            'http://www.carmenrios.com/',
-            'http://afectadosclausulasuelo.org/',
-            'https://www.pet-supermarket.co.uk/Dog/Dog-Collars,-Tags-and-Leashes/c/PSGB00054',
-            'https://themebot.com/news/phpnuke',
-            'https://2a1-blog.phpnuke.org/en/c388140/php-returning-values-by-reference',
-            'https://3acd-descargar.phpnuke.org/es/c09262/microsoft-office-2010',
-            'https://2a1-downloads.phpnuke.org/en/c388143/five-nights-at-freddy-s-4',
-            'https://2msoffice-downloads.phpnuke.org/en/c09262/microsoft-office-2010',
-            'https://plus.google.com/photos/+MarcojesusrfBlogspot/albums/6275651924159238113/6275651927033663970?pid=6275651927033663970&oid=116996185249041591814',
-            
-            'http://www.muyinteresante.es/salud/articulo/el-gusto-por-el-cafe-viene-marcado-en-los-genes-911412757909',
-            'http://economia.elpais.com/economia/2016/07/20/actualidad/1469042079_929155.html',
-            'http://economia.elpais.com/economia/2014/02/03/actualidad/1391418999_915675.html',
-            
-            'http://selnd.com/2b1ftyW',
-            'http://www.muyinteresante.es/tag/genetica',
-            'http://www.muyinteresante.es/salud/articulo/revelan-por-que-unas-personas-envejecen-antes-que-otras-281436359667',
             ]
 
     def download(url):
@@ -501,7 +474,7 @@ if __name__ == '__main__':
             bestNodes, soup = readabilityFilter.getFilteredText(rawHtml, returnText=False)
         except Exception as ex:
             bestNodes = []
-            print('%s' % ex)
+            print('Error: %s' % ex)
         
         htmlText = u"<html><head><meta charset='UTF-8' /></head><body>"
         htmlText += '<div><strong><a href="%s">%s' % (url, url) + '</a></strong></div><hr><br/><br/>'
@@ -515,7 +488,7 @@ if __name__ == '__main__':
         htmlText += '</body></html>'
         
         f=open(path, 'w')
-        f.write(htmlText.encode('utf8'))
+        f.write(htmlText)
         f.close()
         webbrowser.open('file://' + path)
     

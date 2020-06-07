@@ -10,7 +10,7 @@ import urllib
 import chardet
 
 from bs4 import BeautifulSoup
-from gremlims import cp1252
+from .gremlims import cp1252
 
 from config import settings
 from cache.file_storage_factory import FileStorageFactory

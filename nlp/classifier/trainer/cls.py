@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from experiments.trainer.topics.extractor import getTopicList, getData
-from experiments.trainer.models.trainer import getModelTrained,\
+from nlp.classifier.trainer.topics.extractor import getTopicList, getData
+from nlp.classifier.trainer.models.trainer import getModelTrained,\
     testTrainModel
 from sklearn.linear_model import SGDClassifier
 from data_mining.web_pages.scraper import Scraper
@@ -40,10 +40,7 @@ def testModels(initLevel= 1, language='es', country='ES'):
     if settings.TRAINER_TRAIN_MODEL:
         
         clsList = [
-                   #LinearSVC(tol=0.1, penalty='l2'),
-                   #PassiveAggressiveClassifier(n_iter=10),
                    SGDClassifier(n_jobs=1, loss='modified_huber', penalty='l2', n_iter=10, learning_rate='optimal', alpha=0.0001, fit_intercept=True),
-                   #SVC(random_state=0, kernel='linear', probability=True) Mas lento que el caballo del malo
                    ]
         
         for cls in clsList:

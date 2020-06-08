@@ -15,7 +15,6 @@ import random
 from data_mining.search_engines.google.google_api_search import GoogleSearchEngine
 from data_mining.search_engines.google import getGoogleHost
 from data_mining.search_engines.google.google_scraper import GoogleScraper
-from data_mining.search_engines.bing.bing_search import BingSearch
 from data_mining.web_pages.scraper import Scraper
 
 app_download_logger = LoggerFactory.getInstance('downloader')
@@ -105,11 +104,8 @@ class SeoDocumentDownloader(object):
         return sorted(seoDocumentDict.values(), key=lambda x: x.order, reverse=False)[0:self.downloadLimit]
 
     def getLinks(self):
-            
-        if self.searchEngine == 'google':
-            return self.getGoogleLinks()
-        else:
-            return self.getBingLinks()
+        return self.getGoogleLinks()
+
             
     
     def getGoogleLinks(self):
@@ -133,38 +129,10 @@ class SeoDocumentDownloader(object):
                     self.links = googleScrapper.search()
             except Exception as e:
                 app_logger.info('%s' % e)
-                app_logger.info('Google Scrapper and API failed. Trying Bing....')
-                try:
-                    bing = BingSearch()
-                    self.links = bing.search_all(query=self.query, downloadLimit=self.downloadLimit, market='%s-%s' % (self.language, self.country))
-                except Exception as e:
-                    app_logger.info('%s' % e)
-                    app_logger.info('Bing also failed, we are lost....')
-                    self.links = []
+                app_logger.info('Google Scrapper and API failed')
             
         return self.links
-        
-    def getBingLinks(self):
-        if not self.links:
-            try:
-                bing = BingSearch()
-                self.links = bing.search_all(query=self.query, downloadLimit=self.downloadLimit, market='%s-%s' % (self.language, self.country))
-            except Exception as e:
-                app_logger.info('%s' % e)
-                app_logger.info('Bing failed, trying google....')
-                try:
-                    searchEngine = GoogleSearchEngine(self.query,
-                                                      self.language,
-                                                      self.country,
-                                                      getGoogleHost(self.country),
-                                                      max_results=self.downloadLimit)
-                    self.links = searchEngine.search()
-                except Exception as e:
-                    app_logger.info('%s' % e)
-                    app_logger.info('Google Failed, we are lost....')
-                    self.links = []
-            
-        return self.links
+
     
 def getSeoDocumentConcurrence(link, order, language, country, sameOrigin, useProxy):
     try:

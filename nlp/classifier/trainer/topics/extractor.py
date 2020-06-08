@@ -6,10 +6,10 @@ from utils.translator import TranslatorFactory
 import random
 from cache.file_storage_factory import FileStorageFactory
 from config import settings
-from search_engines.google import getGoogleHost
-from search_engines.google.google_scraper import GoogleScraper
+from data_mining.search_engines.google import getGoogleHost
+from data_mining.search_engines.google.google_scraper import GoogleScraper
 from utils.remain_timer import RemainTimer
-from experiments.trainer.models.trainer_data import TrainerData
+from nlp.classifier.trainer.models.trainer_data import TrainerData
 from multiprocessing.pool import ThreadPool
 import gc
 
@@ -28,7 +28,7 @@ def getData(topics, initLevel = settings.TRAINER_INIT_LEVEL, language='es', coun
                                               )
     result = fileStorage.get(key)
     if not result or not settings.CACHE or not settings.TRAINER_DOWNLOAD_DOCUMENTS  or settings.SCRAPER_RELOAD_CONTENT:
-        print 'NO CACHE --- Generando trainer data... %s' % key
+        print('NO CACHE --- Generando trainer data... %s' % key)
         result = _getData(topics, initLevel, language, country)
         if settings.TRAINER_DOWNLOAD_DOCUMENTS:
             fileStorage.set(key, result)
@@ -63,7 +63,7 @@ def _getData(topics, initLevel, language, country):
         else:
             endInterval = startInterval + lenPart
             
-        print 'Intervalo a Descargar %s - %s' % (startInterval, endInterval)
+        print('Intervalo a Descargar %s - %s' % (startInterval, endInterval))
         
         gc.collect() 
         downloadPool = ThreadPool(processes=settings.TRAINER_NUM_PROCESSES)
@@ -128,7 +128,7 @@ def getTopicList(filename, initLevel=1, minTopicSize=4):
         next(topicsFile, None)  # skip the headers 
         for row in topicsFile:
             try:
-                row = unicode(row, 'utf-8')
+                row = row.encode('utf8')
                 row = row.replace('\n', '')
                 parts = row.split(' > ')
                 if len(parts) > initLevel:
@@ -154,7 +154,7 @@ def getTopicList(filename, initLevel=1, minTopicSize=4):
                         index += 1    
             except Exception as ex:
                 print(ex)
-                print 'Error en %s' % row
+                print('Error en %s' % row)
                 continue
     return {topic:list(content) for topic, content in topicList.items() if len(content) > 3}
 
@@ -169,7 +169,7 @@ def getTopicHierarchy(topic, filename):
         # search root
         next(topicsFile, None)  # skip the headers 
         for row in topicsFile:
-            row = unicode(row, 'utf-8')
+            row = row.encode('utf8')
             row = row.replace('\n', '')
             parts = row.split(' > ')
             finish = False
@@ -225,7 +225,7 @@ def _getRequestsInfo(topics, min2Download = 0):
 
 def _getGoogleLinks(query, language, country, downloadLimit):
     try:
-        print 'Language: %s Country: %s Query: %s ' % (language, country, query)
+        print('Language: %s Country: %s Query: %s ' % (language, country, query))
         googleSearch = GoogleScraper(query,
                                language=language,
                                country=country,
@@ -253,9 +253,9 @@ if __name__ == '__main__':
     import sys
     PROJECT_ROOT = os.path.dirname(__file__)
     
-    print os.getcwd()
+    print(os.getcwd())
     sys.path.insert(0, os.path.join(PROJECT_ROOT, os.getcwd()+ "./../"))
     os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')    
     
     filename = os.getcwd() + './../' + 'data/products/taxonomy.es-ES.txt'
-    print getTopicHierarchy('Transporte de bebés', filename)
+    print(getTopicHierarchy('Transporte de bebés', filename))

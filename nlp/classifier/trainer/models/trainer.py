@@ -75,7 +75,7 @@ def _trainModel(clf, trainerData):
     trainer = _getTrainer(pipeline, parameters)
     
     if not SEARCH_BEST_PARAMS:
-        print 'NO GRID SEARCH'
+        print('NO GRID SEARCH')
     else:
         print(u"Performing grid search...")
         print(u"parameters:")

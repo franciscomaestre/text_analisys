@@ -4,7 +4,7 @@
 import urllib3
 import random
 from config import settings    
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from multiprocessing import RLock
 from utils.logger import LoggerFactory
 

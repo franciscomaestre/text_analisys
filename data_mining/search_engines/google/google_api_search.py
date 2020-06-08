@@ -37,8 +37,8 @@ import json
 import time
 
 from config import settings
-from cache.file_storage_factory import FileStorageFactory
-from concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
+from utils.concurrence.urllib3_pool_factory import Urllib3PoolFactory
 from urllib3.util.retry import Retry
 
 from utils.logger import LoggerFactory

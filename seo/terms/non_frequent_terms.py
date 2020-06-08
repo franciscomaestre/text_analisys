@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from nltk import FreqDist
-from concurrence.callback_wait import CallbackWait
+from utils.concurrence.callback_wait import CallbackWait
 from config import settings
 # from config import SEO_TERMS_DOWNLOAD_LIMIT
 import numpy

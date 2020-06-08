@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import nlp as nltk_utils
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 import nltk.collocations
 from config import settings
 from data_mining.web_pages.scrapping_rules import SPLITTER_TAG, SPLITTER

@@ -4,9 +4,9 @@
 import threading
 import re
 from config import settings
-from concurrence.workers_pool_factory import WorkersPoolFactory
-from concurrence.callback_wait import CallbackWait
-from cache.file_storage_factory import FileStorageFactory
+from utils.concurrence.workers_pool_factory import WorkersPoolFactory
+from utils.concurrence.callback_wait import CallbackWait
+from utils.persistence.file_storage_factory import FileStorageFactory
 from seo.containers.seo_library import SeoLibrary
 from seo.containers.seo_document import SeoDocument
 

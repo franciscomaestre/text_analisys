@@ -3,7 +3,7 @@
 
 import re
 import math
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from utils.logger import LoggerFactory
 from config import settings
 from utils.proxy_manager import ProxyManager

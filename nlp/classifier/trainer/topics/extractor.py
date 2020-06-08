@@ -4,7 +4,7 @@
 from data_mining.seo_document_downloader import SeoDocumentDownloader
 from utils.translator import TranslatorFactory
 import random
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from config import settings
 from data_mining.search_engines.google import getGoogleHost
 from data_mining.search_engines.google.google_scraper import GoogleScraper

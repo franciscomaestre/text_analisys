@@ -396,7 +396,7 @@ if __name__ == '__main__':
             ]
     
     def download(url):
-        from concurrence.urllib3_pool_factory import Urllib3PoolFactory    
+        from utils.concurrence.urllib3_pool_factory import Urllib3PoolFactory    
         pool = Urllib3PoolFactory.getSameOriginPool()
         from data_mining.web_pages.scraper import UserAgent
         request = pool.request('GET', url,

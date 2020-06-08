@@ -20,8 +20,8 @@ from selenium import webdriver
 import cStringIO
 from config import settings
 import sys
-from cache.file_storage import FileStorage
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage import FileStorage
+from utils.persistence.file_storage_factory import FileStorageFactory
 import time
 
 class ScreenCapture(object):

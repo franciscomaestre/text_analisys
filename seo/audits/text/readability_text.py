@@ -6,8 +6,8 @@ import hashlib
 
 from utils.logger import LoggerFactory
 from config import settings
-from cache.file_storage_factory import FileStorageFactory
-from cache.django.encoding import force_bytes
+from utils.persistence.file_storage_factory import FileStorageFactory
+from utils.persistence.django.encoding import force_bytes
 app_download_logger = LoggerFactory.getInstance('downloader')
 app_logger = LoggerFactory.getInstance('app')
 

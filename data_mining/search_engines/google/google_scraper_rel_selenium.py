@@ -9,7 +9,7 @@ Use Selenium and open:
 
 """
 
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from utils.logger import LoggerFactory
 from utils.proxy_manager import ProxyManager
 from pyvirtualdisplay import Display

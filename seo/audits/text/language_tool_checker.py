@@ -4,8 +4,8 @@
 from config import settings
 
 import  urllib3, hashlib
-from cache.file_storage_factory import FileStorageFactory
-from cache.django.encoding import force_bytes
+from utils.persistence.file_storage_factory import FileStorageFactory
+from utils.persistence.django.encoding import force_bytes
 from nlp.stop_words import StopWords
 import language_check #@UnresolvedImport
 from nlp.hunspell import hunSpellcheck

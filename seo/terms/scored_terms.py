@@ -4,7 +4,7 @@
 import gensim
 import operator
 from seo.containers.seo_word import SeoWord
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from config import settings
 
 from utils.logger import LoggerFactory

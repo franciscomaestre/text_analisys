@@ -9,7 +9,7 @@ from nltk.stem.snowball import SnowballStemmer
 from nlp.stop_words import StopWords
 
 from utils.logger import LoggerFactory
-from cache.memcached_factory import MemcachedFactory
+from utils.persistence.memcached_factory import MemcachedFactory
 from utils.translator import TranslatorFactory
 app_logger = LoggerFactory.getInstance('app')
 

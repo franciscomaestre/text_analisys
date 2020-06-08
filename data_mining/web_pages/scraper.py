@@ -13,13 +13,13 @@ from bs4 import BeautifulSoup
 from .gremlims import cp1252
 
 from config import settings
-from cache.file_storage_factory import FileStorageFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from seo.containers.seo_document import DataDocument
 from bs4.element import NavigableString
-from concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from utils.concurrence.urllib3_pool_factory import Urllib3PoolFactory
 from urllib.parse import urlparse
 from data_mining.web_pages.scrapers.readability import Readability
-from concurrence.request_factory import RequestFactory
+from utils.concurrence.request_factory import RequestFactory
 
 try:
     import magic

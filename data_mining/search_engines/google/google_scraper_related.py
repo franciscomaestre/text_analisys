@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from concurrence.urllib3_pool_factory import Urllib3PoolFactory
-from cache.file_storage_factory import FileStorageFactory
+from utils.concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from utils.persistence.file_storage_factory import FileStorageFactory
 from utils.logger import LoggerFactory
 import time
 import random

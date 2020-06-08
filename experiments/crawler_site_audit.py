@@ -9,7 +9,7 @@ os.environ.setdefault("SEOLOGIES_SETTINGS_MODULE", 'config.debug_settings')
 from scrapy.crawler import CrawlerProcess
 from scrapy.spiders.crawl import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
-from concurrence.urllib3_pool_factory import Urllib3PoolFactory
+from utils.concurrence.urllib3_pool_factory import Urllib3PoolFactory
 
 class ScrapyCrawler(CrawlSpider):
     name = 'Seologies Crawler'

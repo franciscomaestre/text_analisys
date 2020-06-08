@@ -100,7 +100,7 @@ TRAINER_TREE_TYPE = 'products'
 SCREENCAPTURE_TEXTAUDIT_WIDTH = 305
 SCREENCAPTURE_TEXTAUDIT_HEIGHT = 165
 SCREENCAPTURE_PATH = './_outputs/snapshot'
-SCREENCAPTURE_DOMAIN = 'http://backend-api.seologies.com/snapshot'
+SCREENCAPTURE_DOMAIN = 'http://URL/snapshot'
 
 #------------Logger
 
@@ -108,7 +108,7 @@ LOG_BASE_PATH = './_outputs/log/'
 
 #------------API's
 
-SEMRUSH_KEY = '953b6de2a5049e4b6b9b4835e87db81f'
+SEMRUSH_KEY = '__________API________KEY___________'
 SEMRUSH_CPC_LOWER_LIMIT = 0.05
 SEMRUSH_CO_LOWER_LIMIT = 0.8
 SEMRUSH_REAL_IP = '2.137.231.57'
@@ -119,27 +119,20 @@ GREPWORD_API_KEY = '97eabb51032ee99'
 GREPWORD_CMP_LOWER_LIMIT = 0.75
 GREPWORD_MAX_STEPS = 10
 
-GOOGLE_SEARCH_ENGINE_ID = '017084139525212023454:nw96h6_bekw'
-GOOGLE_SEOLOGIES_API_KEY = 'AIzaSyDSkuYnwEXExo66jz1mvccbcV5ppF7OVb4'
+GOOGLE_SEARCH_ENGINE_ID = '__________API________ID___________'
+GOOGLE_SEOLOGIES_API_KEY = '__________API________KEY___________'
 
-BING_API_KEY = 'RP8APwlYcRwq9vgqE/Sq5sQ4YOIQx2UoNcdG5df95GM'
-BING_AUTOSUGGEST_KEY = 'a8708ba62c45409c9a835a16942baf04'
-BING_SPELLCHECKER_KEY = '3b30164c8bc141db94c686c1528cfc1c'
+BING_API_KEY = '__________API________KEY___________'
+BING_AUTOSUGGEST_KEY = '__________API________KEY___________'
+BING_SPELLCHECKER_KEY = '__________API________KEY___________'
 
-# https://datamarket.azure.com/dataset/explore/8818f55e-2fe5-4ce3-a617-0b8ba8419f65
-BING_SEARCH_KEY = 'RP8APwlYcRwq9vgqE/Sq5sQ4YOIQx2UoNcdG5df95GM'
-# https://datamarket.azure.com/dataset/amla/text-analytics#terms
+BING_SEARCH_KEY = '__________API________KEY___________'
 
-# GOOGLE_SEOLOGIES_API_KEY = 'AIzaSyA6heELIVh6A_ioVwiinD8azA7P7b4023E'
-# GOOGLE_SEARCH_ENGINE_ID = '011936815388225308440:ciabnvwdmsk'
+PLAGTRACKER_USER = '__________API________USER___________'
+PLAGTRACKER_KEY = '__________API________KEY___________'
 
-PLAGTRACKER_USER = 'francisco.maestre.movil@gmail.com'
-PLAGTRACKER_KEY = 'Eiveik8Oopjoosie1aeTh'
-
-COPYSCAPE_USER = 'bibado'
-COPYSCAPE_KEY = 'j5sjlrdryj4dttp6'
-COPYSCAPE_USER = 'whaka'
-COPYSCAPE_KEY = 'j7wlkmmyqko5n4rg'
+COPYSCAPE_USER = '__________API________USER___________'
+COPYSCAPE_KEY = '__________API________KEY___________'
 COPYSCAPE_CACHE_TIMEOUT = 10*60
 
 #------------System
@@ -159,5 +152,5 @@ MEMCACHED_SPACE = 'python'
 
 RABBIT_POOL_SIZE = 2
 RABBIT_HOST = 'localhost'
-RABBIT_USER = 'seologiesBackend'
-RABBIT_PASSWORD = 'th245yura'
+RABBIT_USER = '__________RABBIT________USER___________'
+RABBIT_PASSWORD = '__________RABBIT________PASSWORD___________'

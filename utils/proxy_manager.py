@@ -110,7 +110,7 @@ class ProxyBuyProxies(ProxyBase):
     http://api.buyproxies.org
     '''
     
-    proxy_basic_auth='tocomocho:magister27'
+    proxy_basic_auth='tocomocho:XXXXXXXXX'
     COUNTER = 0
     LOCK = RLock()
     

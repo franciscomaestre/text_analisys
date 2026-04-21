@@ -1,2 +1,3 @@
 - 2026-03-23 19:08 | refactor: reorganizar apuntes (#8)
 - 2026-04-12 20:24 | notes: ideas pendientes (#30)
+- 2026-04-21 13:30 | wip: experimento del dia (#43)

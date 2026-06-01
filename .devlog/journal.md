@@ -5,3 +5,4 @@
 - 2026-04-30 17:53 | update: progreso (#58)
 - 2026-05-02 11:32 | wip: experimento del dia (#60)
 - 2026-05-22 16:10 | notes: ideas pendientes (#84)
+- 2026-06-01 14:05 | update: progreso (#96)

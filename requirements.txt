@@ -17,7 +17,7 @@ locks==0.1.1
 lxml==4.5.1
 monotonic==1.5
 nltk==3.5
-numpy==1.18.5
+numpy==1.22.0
 parsel==1.6.0
 Protego==0.1.16
 pyasn1==0.4.8
